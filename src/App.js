@@ -1,70 +1,104 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Link } from 'react-router';
 import {MovieSearch} from './components/movieSearch/MovieSearch'
-import {MovieList} from './components/movieInfo/'
+import {MovieList} from './components/movieList/'
 import {loadMovies} from './lib/movieService'
 
 class App extends Component {
+  
+  constructor(){
+    super();
+    this.state = {
+      movies: [],
+      currentMovie: 'Home Alone',
+      searchValue: '',
+      poster: 'https://secure.static.tumblr.com/opuuuju/lWjn7izq1/coming-soon.png',
+      showMenu: false
+    }
+  }
+  
 
-  state = {
-    movies: [],
-    currentMovie: 'Home Alone',
-    searchValue: '',
-    poster: 'https://secure.static.tumblr.com/opuuuju/lWjn7izq1/coming-soon.png'
+  componentWillMount(){
+    // Called the first time the component is loaded right before the component is added to the page
+    this.search();
   }
 
   componentDidMount(){
-    loadMovies('inception').then(
-      movies => {
-        this.setState({movies})
-        console.log(this.state.movies)
-      }
-    )
+    // Called after the component has been rendered into the page
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    loadMovies(this.state.searchValue).then(
-      movies => {
-        this.setState({movies})
-        console.log('new search complete')
-      }
-    )
-
-    this.setState({
-      searchValue: ''
-    })
-    
+  componentWillUpdate(nextProps, nextState){
+    // Called when the props and/or state change
   }
 
-  handleInputChange = (e) => {
+
+  updateSearch = (e) => {
+    this.search(e.target.value)
     this.setState({
       searchValue: e.target.value
     })
   }
 
 
+  search = (query="star") => {
+    loadMovies(query).then(
+      movies => {
+        this.setState({movies})
+      }
+    )
+  }
+
+  showMenu = () => {
+    this.setState({
+      showMenu: true
+    })
+    console.log('hello')
+  }
+
+  hideMenu = () => {
+    this.setState({
+      showMenu: false
+    })
+    console.log('goodbye')
+  }
+  
+
   render() {
+    
     return (
       <div className="App">
+        
         <h1>Movie-Note</h1>
-        {
-          (this.state.currentMovie === 'Home Alone')
-            ? <div>Something went wrong</div>
-            : <div>Everything is fine</div>
-        }
+        
         <div className="Movie-Search">
           <MovieSearch 
-          handleSubmit={this.handleSubmit}
-          handleInputChange={this.handleInputChange}
-          searchValue={this.state.searchValue}/>
+          updateSearch={this.updateSearch}
+          searchValue={this.state.searchValue}
+          showMenu={this.showMenu}
+          hideMenu={this.hideMenu}
+          />
+
+          {}
+          
+          <div className="Movie-Info">
+            <MovieList 
+              showMenu={this.state.showMenu}
+              movies={this.state.movies} 
+              poster={this.state.poster}/>
+          </div>
+
         </div>
+
+        {this.props.children}
         
-        <div className="Movie-Info">
-          <MovieList 
-          movies={this.state.movies} 
-          poster={this.state.poster}/>
+        <div className="Movie-Note">
+          <h1>Movie Note</h1>
+          <ul>
+            <li><Link activeStyle={{color: 'green'}} to="/movie">Movie</Link></li>
+          </ul>
         </div>
+
       </div>
     );
   }

@@ -5,22 +5,54 @@ body {
 }
 
 .App{
-  width: 1200px;
+  width: 800px;
   margin: 0 auto;
 }
 
+.Movie-Search{
+  margin-bottom: 30px;
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+.Movie-Search form input{
+  width: 297px;
+}
+
 .Movie-Info{
-  border: red solid 1px;
-  width: 75%;
+  background-color: #eee;
+  position: absolute;
 }
 
 .Movie-List img{
+  width: 40px;
+  float: left;
+  margin-left: 30px;
+}
+
+.Movie-List h1{
+  font-size: 16px;
+  display: block;
+}
+
+.Movie-List h2{
+  font-size: 13px;
   width: 200px;
+  text-align: left;
+  margin-left: 20px;
+  float: left;
 }
 
 .Movie-List .movie-module{
-  width: 50%;
+  width: 100%;
   float: left;
-  outline: red solid 1px;
-  height: 400px;
+  outline: gray solid 1px;
+  padding: 10px 0px;
+}
+
+.Movie-Note{
+  width: 300px;
+  float: right;
+  outline: green solid 1px;
+  
 }

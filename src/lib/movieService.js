@@ -10,8 +10,6 @@ export const loadMovies = (title) => {
 
 
 
-
-
 // export const createTodo = (todo) =>{
 //   return fetch(baseUrl, {
 //     method: 'POST',
