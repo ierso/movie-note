@@ -4,11 +4,9 @@ body {
   font-family: sans-serif;
 }
 
-.App{
-  width: 800px;
-  margin: 0 auto;
+.test{
+  border: red solid 1px;
 }
-
 .Movie-Search{
   margin-bottom: 30px;
   position: relative;
@@ -22,6 +20,7 @@ body {
 .Movie-Info{
   background-color: #eee;
   position: absolute;
+  z-index: 99999;
 }
 
 .Movie-List img{
@@ -50,9 +49,3 @@ body {
   padding: 10px 0px;
 }
 
-.Movie-Note{
-  width: 300px;
-  float: right;
-  outline: green solid 1px;
-  
-}

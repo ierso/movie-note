@@ -1,4 +1,5 @@
 const baseUrl = 'http://www.omdbapi.com/?s='
+const baseUrlID = 'http://www.omdbapi.com/?i='
 
 export const loadMovies = (title) => {
   return fetch(baseUrl + title)
@@ -8,7 +9,13 @@ export const loadMovies = (title) => {
     })
 }
 
-
+export const loadMovie = (id) => {
+  return fetch(baseUrlID + id)
+    .then(res => res.json())
+    .then((data)=>{
+      return data.Search
+    })
+}
 
 // export const createTodo = (todo) =>{
 //   return fetch(baseUrl, {

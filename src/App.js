@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Link } from 'react-router';
 import {MovieSearch} from './components/movieSearch/MovieSearch'
+import {SideBar} from './components/sideBar/'
 import {MovieList} from './components/movieList/'
 import {loadMovies} from './lib/movieService'
 
@@ -13,8 +13,7 @@ class App extends Component {
       movies: [],
       currentMovie: 'Home Alone',
       searchValue: '',
-      poster: 'https://secure.static.tumblr.com/opuuuju/lWjn7izq1/coming-soon.png',
-      showMenu: false
+      poster: 'https://secure.static.tumblr.com/opuuuju/lWjn7izq1/coming-soon.png'
     }
   }
   
@@ -49,56 +48,51 @@ class App extends Component {
     )
   }
 
-  showMenu = () => {
-    this.setState({
-      showMenu: true
-    })
-    console.log('hello')
-  }
-
   hideMenu = () => {
     this.setState({
-      showMenu: false
+      searchValue: ''
     })
-    console.log('goodbye')
+    console.log('hiding menu')
   }
   
+  newPage = () => {
+    this.history.pushState(null, '/stuff/')
+    console.log('test')
+  }
 
   render() {
     
     return (
       <div className="App">
-        
-        <h1>Movie-Note</h1>
-        
-        <div className="Movie-Search">
-          <MovieSearch 
-          updateSearch={this.updateSearch}
-          searchValue={this.state.searchValue}
-          showMenu={this.showMenu}
-          hideMenu={this.hideMenu}
-          />
-
-          {}
-          
-          <div className="Movie-Info">
-            <MovieList 
-              showMenu={this.state.showMenu}
-              movies={this.state.movies} 
-              poster={this.state.poster}/>
+        <div className="container test">
+          <div className="row test">
+            <div className="col-md-12">
+              <h1 onClick={this.newPage}>Movie-Note</h1>
+              <div className="Movie-Search">
+                <MovieSearch 
+                updateSearch={this.updateSearch}
+                searchValue={this.state.searchValue}
+                />
+                <div className="Movie-Info">
+                  <MovieList
+                    newPage={this.newPage}
+                    searchValue={this.state.searchValue} 
+                    hideMenu={this.hideMenu}
+                    movies={this.state.movies} 
+                    poster={this.state.poster}/>
+                </div>
+              </div>
+            </div>
           </div>
-
+          <div className="row test">
+            <div className="col-md-8 test">
+              {this.props.children}
+            </div>
+            <div className="col-md-4 test">
+              <SideBar />
+            </div>
+          </div>
         </div>
-
-        {this.props.children}
-        
-        <div className="Movie-Note">
-          <h1>Movie Note</h1>
-          <ul>
-            <li><Link activeStyle={{color: 'green'}} to="/movie">Movie</Link></li>
-          </ul>
-        </div>
-
       </div>
     );
   }

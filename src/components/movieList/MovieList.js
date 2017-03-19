@@ -1,12 +1,14 @@
 import  React from 'react';
+import { Link } from 'react-router';
 
 export const MovieList = (props) => {
 
-    if (props.showMenu === false){
-        console.log("HEELO!!")
+    if (props.searchValue.length <= 0){
+        console.log("if search menu has no value hide menu")
         return null
     }
 
+   
     if(!props.movies){
         return (
             <div className="Movie-List">
@@ -18,19 +20,23 @@ export const MovieList = (props) => {
             </div>
         )
     }
+  
     return (
         <div className="Movie-List">
-            <h1>Movies Info</h1>
+            <h1 onClick={props.newPage}>Movies Info</h1>
                 {props.movies.map((movie) =>{
                     return(
-                        
                         <div className="movie-module" key={movie.imdbID}>
                             <img className="movie-poster" src={
                                 (movie.Poster === 'N/A')
                                 ? props.poster
                                 : movie.Poster
                                 } alt={movie.Title}/>
-                            <h2><a href="">{movie.Title}</a></h2> 
+                            <h5>
+                                <Link onClick={props.hideMenu} to={`/movie/${movie.imdbID}`}>
+                                    {movie.Title}
+                                </Link>
+                            </h5> 
                         </div>
                     )
                 })}
