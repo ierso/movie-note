@@ -49,3 +49,24 @@ body {
   padding: 10px 0px;
 }
 
+.movie-info h4{
+  font-size: 15px;
+}
+
+.movie-poster img{
+  width: 100%;
+}
+
+.button{
+  background-color: #cc7b19;
+  background-image: none;
+  text-transform: uppercase;
+  border: solid 1px #cc7b19;
+  padding: 5px 15px;
+  border-radius: 3px;
+}
+
+.button:hover{
+  background-color: #b56d16;
+  border: solid 1px #b56d16;
+}

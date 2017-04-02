@@ -49,18 +49,35 @@ class Movie extends Component {
     console.log(`this is ${this.state.movie.Actors}`)
     return (
       <div className="Movie row">
-        {/*<h1>Movie: {this.state.movie.Title}</h1>*/}
         <div className="movie-poster col-md-4">
           <img className="movie-poster" src={this.state.movie.Poster} alt={this.state.movie.Title}
           />
         </div>
         <div className="movie-info col-md-8">
           <div className="title">
-            {this.state.movie.Title}
+            <h1>{this.state.movie.Title} <span>{this.state.movie.imdbRating}</span></h1>
           </div>
           <div className="year">
-            {this.state.movie.Year}
+            <h4><span>Release Date:</span> {this.state.movie.Year}</h4>
           </div>
+          <div className="runtime">
+            <h4><span>Runtime:</span> {this.state.movie.Runtime}</h4>
+          </div>
+          <div className="director">
+            <h4><span>Directed By:</span> {this.state.movie.Director}</h4>
+          </div>
+           <div className="written">
+            <h4><span>Written By:</span> {this.state.movie.Writer}</h4>
+          </div>
+          <div className="genre">
+            <h4><span>Genre:</span> {this.state.movie.Genre}</h4>
+          </div>
+          <div className="plot">
+            <h4>{this.state.movie.Plot}</h4>
+          </div>
+
+          <button onClick={this.addMovie} className="button">Watch Later</button>
+
         </div>         
       </div>
     );
