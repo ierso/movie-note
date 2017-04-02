@@ -5,5 +5,10 @@ const config = {
     databaseURL: "https://movie-note.firebaseio.com",
 };
 
-var fire = firebase.initializeApp(config);
+
+export const fire = firebase.initializeApp(config);
+
+export const ref = firebase.database().ref()
+export const firebaseAuth = firebase.auth
+
 export default fire;

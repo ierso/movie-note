@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
-import fire from './fire';
+import {fire} from './fire';
+import firebase from 'firebase';
+
 import './App.css';
+
+// Login
+import Register from './components/register/Register'
+
 import {MovieSearch} from './components/movieSearch/MovieSearch'
-import {SideBar} from './components/sideBar/'
-import {MovieList} from './components/movieList/'
+import {SideBar} from './components/sideBar'
+import {MovieList} from './components/movieList'
 import {loadMovies} from './lib/movieService'
+
+
+
+
 // import {addMovie} from './lib/watchListHelpers'
 
 
@@ -28,6 +38,23 @@ class App extends Component {
 
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
+
+    // Listen to auth state changes
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if(firebaseUser) {
+        console.log(firebaseUser);
+        //hide login
+        //hide register
+        //show log out button
+      } else {
+        console.log('not logged in');
+        //show login
+        //show register
+        //hide log out button
+      }
+    });
+  
+    
     let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100);
     messagesRef.on('child_added', snapshot => {
       /* Update React state when message is added at Firebase Database */
@@ -35,35 +62,17 @@ class App extends Component {
       this.setState({ messages: [message].concat(this.state.messages) });
     })
   }
-  
-  addMessage(e){
-    e.preventDefault(); // <- prevent form submit from reloading the page
-    /* Send the message to Firebase */
-    fire.database().ref('messages').push( this.inputEl.value );
-    this.inputEl.value = ''; // <- clear the input
-  }
 
   componentWillUnmount() {  
     this.firebaseRef.off();
   };
 
-  componentDidMount(){
-    
-    // Called after the component has been rendered into the page
-    // this.setState({
-    //   watchList: [
-    //     {id: 1, title: 'Fun Fun'},
-    //     {id: 2, title: 'Cool'}
-    //   ]
-    // })
-
-    // const rootRef = firebase.database().ref().child('react');
-    // const currentMovieRef = rootRef.child('currentMovie');
-    // currentMovieRef.on('value', snap => {
-    //   this.setState({
-    //     currentMovie: snap.val()
-    //   });
-    // });
+  
+  addMessage(e){
+    e.preventDefault();
+    /* Send the message to Firebase */
+    fire.database().ref('messages').push( this.inputEl.value );
+    this.inputEl.value = ''; // <- clear the input
   }
 
   pushToFirebase(event) {
@@ -106,12 +115,54 @@ class App extends Component {
     console.log('test')
   }
 
+  // Adding Data to User
+
+  testAddData = (e) => {
+    e.preventDefault();
+    console.log('hello?')
+    var user = firebase.auth().currentUser;
+    console.log(user)
+
+    if (user != null) {
+      console.log(user)
+      
+      let uid = user.uid;
+      console.log(uid)
+      // adding data to user
+      firebase.database().ref('/users/'+uid).push({
+          watchLater: {
+            foo: 'abc',
+            bar: 'pqr'
+          }
+      });
+    }
+  }
+
+  handleLogOut = (e) => {
+    e.preventDefault();
+    firebase.auth().signOut();
+  }
+
 
 
   render() {
 
     return (
       <div className="App">
+
+        <div className="container">
+
+          <Register/>
+          <form onSubmit={this.testAddData}>
+            <button type="submit" className="btn btn-primary">Add Data</button>
+          </form>
+
+          <form onSubmit={this.handleLogOut}>
+            <button type="submit" className="btn btn-primary">Log Out</button>
+          </form>
+        
+        </div>
+      
         <form onSubmit={this.addMessage.bind(this)}>
         <input type="text" ref={ el => this.inputEl = el }/>
         <input type="submit"/>
