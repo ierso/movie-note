@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import {addMovie} from '../../lib/watchListHelpers'
 // import {loadMovies} from '../../lib/movieService'
 
 class Movie extends Component {
@@ -43,10 +44,21 @@ class Movie extends Component {
       }
     )
   }
+
+  addMovie = () =>{
+    console.log('adding movie to watch list')
+    // const newMovie = this.state.movie
+    // const watchList = this.props.watchList;
+    // console.log(watchList)
+    // const updatedWatchList = addMovie(this.props.watchList, newMovie)
+    this.setState({
+      currentMovie: ''
+    })
+    console.log(this.state.currentMovie)
+  }
   
   render() {
-    
-    console.log(`this is ${this.state.movie.Actors}`)
+  
     return (
       <div className="Movie row">
         <div className="movie-poster col-md-4">

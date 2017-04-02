@@ -6,6 +6,8 @@ import Home from './components/home/Home';
 import Movie from './components/movie/Movie';
 import NotFound from './pages/NotFound/NotFound';
 
+
+
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={App}>
