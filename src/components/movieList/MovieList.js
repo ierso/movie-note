@@ -22,19 +22,20 @@ export const MovieList = (props) => {
     }
   
     return (
+         
         <div className="Movie-List">
             <h1 onClick={props.newPage}>Movies Info</h1>
                 {props.movies.map((movie) =>{
                     return(
-                        <div className="movie-module" key={movie.imdbID}>
+                        <div className="movie-module" key={movie.id}>
                             <img className="movie-poster" src={
-                                (movie.Poster === 'N/A')
-                                ? props.poster
-                                : movie.Poster
-                                } alt={movie.Title}/>
+                                (`http://image.tmdb.org/t/p/w185${movie.poster_path}` === 'N/A')
+                                ? `http://image.tmdb.org/t/p/w185${movie.poster_path}`
+                                : `http://image.tmdb.org/t/p/w185${movie.poster_path}`
+                                } alt={movie.title}/>
                             <h5>
-                                <Link onClick={props.hideMenu} to={`/movie/${movie.imdbID}`}>
-                                    {movie.Title}
+                                <Link onClick={props.hideMenu} to={`/movie/${movie.id}`}>
+                                    {movie.title}
                                 </Link>
                             </h5> 
                         </div>

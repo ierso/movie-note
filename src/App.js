@@ -32,7 +32,7 @@ class App extends Component {
         {id: 2, title: 'Batman Begins'}
       ],
       searchValue: '',
-      poster: 'https://secure.static.tumblr.com/opuuuju/lWjn7izq1/coming-soon.png'
+      poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg'
     }
   }
 

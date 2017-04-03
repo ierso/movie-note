@@ -1,16 +1,20 @@
 const baseUrl = 'http://www.omdbapi.com/?s='
 const baseUrlID = 'http://www.omdbapi.com/?i='
 
+
+const tmdbTitleApi = 'https://api.themoviedb.org/3/search/movie?api_key=c2d6b648cfb303b5ae02208a5c91d208&query='
+
 export const loadMovies = (title) => {
-  return fetch(baseUrl + title)
+  return fetch(tmdbTitleApi + title)
     .then(res => res.json())
     .then((data)=>{
-      return data.Search
+      console.log(`time will tell ${data.results}`)
+      return data.results
     })
 }
 
 export const loadMovie = (id) => {
-  return fetch(baseUrlID + id)
+  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query`)
     .then(res => res.json())
     .then((data)=>{
       return data.Search
