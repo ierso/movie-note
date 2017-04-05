@@ -78,3 +78,7 @@ body {
 .col-sm-12.auth-form{
   padding: 20px 100px;
 }
+
+.container{
+  width: 100%;
+}

@@ -93,7 +93,6 @@ class App extends Component {
     // Called when the props and/or state change
   }
 
-
   updateSearch = (e) => {
     this.search(e.target.value)
     this.setState({
@@ -102,7 +101,7 @@ class App extends Component {
   }
 
 
-  search = (query="") => {
+  search = (query) => {
     loadMovies(query).then(
       movies => {
         this.setState({movies})
@@ -148,6 +147,8 @@ class App extends Component {
     console.log('logged out');
   }
 
+  // Modal
+
   openModalLogin = (e) => {
     e.preventDefault();
     this.setState({ 
@@ -155,7 +156,6 @@ class App extends Component {
       login: true,
       register: false
     })
-    console.log('login')
   }
 
   openModalRegister = (e) => {
@@ -165,8 +165,6 @@ class App extends Component {
       register: true,
       login: false
     })
-    console.log('register')
-    
   }
 
   closeModal = (e) => {

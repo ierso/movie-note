@@ -1,8 +1,19 @@
+const apiKey = 'c2d6b648cfb303b5ae02208a5c91d208';
+
 const baseUrl = 'http://www.omdbapi.com/?s='
 const baseUrlID = 'http://www.omdbapi.com/?i='
+const upcomingUrl = `http://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`
 
+const tmdbTitleApi = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`
 
-const tmdbTitleApi = 'https://api.themoviedb.org/3/search/movie?api_key=c2d6b648cfb303b5ae02208a5c91d208&query='
+export const loadRecentMovies = (title) => {
+  return fetch(tmdbTitleApi + title)
+    .then(res => res.json())
+    .then((data)=>{
+      console.log(`time will tell ${data.results}`)
+      return data.results
+    })
+}
 
 export const loadMovies = (title) => {
   return fetch(tmdbTitleApi + title)
@@ -14,7 +25,7 @@ export const loadMovies = (title) => {
 }
 
 export const loadMovie = (id) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query`)
+  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&query`)
     .then(res => res.json())
     .then((data)=>{
       return data.Search

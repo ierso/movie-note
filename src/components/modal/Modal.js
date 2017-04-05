@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
 class Modal extends Component {
-  
-  constructor(){
-    super();
-  }
 
-  close(e) {
+  close = (e) => {
     e.preventDefault()
 
     if (this.props.onClose) {
@@ -27,20 +23,6 @@ class Modal extends Component {
         background: '#fff'
       }
 
-      if (this.props.width && this.props.height) {
-        modalStyle.width = this.props.width + 'px'
-        modalStyle.height = this.props.height + 'px'
-        modalStyle.marginLeft = '-' + (this.props.width/2) + 'px',
-        modalStyle.marginTop = '-' + (this.props.height/2) + 'px',
-        modalStyle.transform = null
-      }
-
-      if (this.props.style) {
-        for (let key in this.props.style) {
-          modalStyle[key] = this.props.style[key]
-        }
-      }
-
       let backdropStyle = {
         position: 'absolute',
         width: '100%',
@@ -50,12 +32,6 @@ class Modal extends Component {
         zIndex: '9998',
         background: 'rgba(0, 0, 0, 0.3)'
       }
-
-      if (this.props.backdropStyle) {
-        for (let key in this.props.backdropStyle) {
-          backdropStyle[key] = this.props.backdropStyle[key]
-        }
-      }
   
       return (
         <div className={this.props.containerClassName}>
@@ -64,7 +40,7 @@ class Modal extends Component {
             </div>
             {!this.props.noBackdrop &&
                 <div className={this.props.backdropClassName} style={backdropStyle}
-                    onClick={e => this.close(e)}/>}
+                    onClick={this.close}/>}
         </div>
       )
   }
