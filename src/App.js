@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import {fire} from './fire';
 import firebase from 'firebase';
 
+import { Link } from 'react-router';
+
 import './App.css';
 
-// Login
+//Modal
+import Modal from './components/modal/Modal'
+
+// Auth
+import Login from './components/login/Login'
 import Register from './components/register/Register'
+
 
 import {MovieSearch} from './components/movieSearch/MovieSearch'
 import {SideBar} from './components/sideBar'
 import {MovieList} from './components/movieList'
 import {loadMovies} from './lib/movieService'
-
-
 
 
 // import {addMovie} from './lib/watchListHelpers'
@@ -32,7 +37,10 @@ class App extends Component {
         {id: 2, title: 'Batman Begins'}
       ],
       searchValue: '',
-      poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg'
+      poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg',
+      isModalOpen: false,
+      login: false,
+      register: false
     }
   }
 
@@ -94,7 +102,7 @@ class App extends Component {
   }
 
 
-  search = (query="star") => {
+  search = (query="") => {
     loadMovies(query).then(
       movies => {
         this.setState({movies})
@@ -110,16 +118,12 @@ class App extends Component {
     console.log('hiding menu')
   }
   
-  newPage = () => {
-    this.history.pushState(null, '/stuff/')
-    console.log('test')
-  }
-
+  
   // Adding Data to User
 
-  testAddData = (e) => {
+  AddData = (e) => {
     e.preventDefault();
-    console.log('hello?')
+    console.log('Adding data to user')
     var user = firebase.auth().currentUser;
     console.log(user)
 
@@ -141,26 +145,60 @@ class App extends Component {
   handleLogOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut();
+    console.log('logged out');
   }
 
+  openModalLogin = (e) => {
+    e.preventDefault();
+    this.setState({ 
+      isModalOpen: true,
+      login: true,
+      register: false
+    })
+    console.log('login')
+  }
 
+  openModalRegister = (e) => {
+    e.preventDefault();
+    this.setState({ 
+      isModalOpen: true,
+      register: true,
+      login: false
+    })
+    console.log('register')
+    
+  }
+
+  closeModal = (e) => {
+    e.preventDefault();
+    this.setState({ 
+      isModalOpen: false
+    })
+  }
 
   render() {
 
     return (
       <div className="App">
+        <Link to="/">GO HOME</Link>
+        <button onClick={this.openModalLogin}>Login</button>
+        <button onClick={this.openModalRegister}>Register</button>
+        <button onClick={this.handleLogOut}>Log Out</button>
+        
+        <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
+          
+          { this.state.login ? <Login /> : null }
+          { this.state.register ? <Register /> : null }
+          
+          <p><button onClick={this.closeModal}>Close</button></p>
+        </Modal>
 
         <div className="container">
-
-          <Register/>
-          <form onSubmit={this.testAddData}>
-            <button type="submit" className="btn btn-primary">Add Data</button>
+          
+          <form onSubmit={this.AddData}>
+            <button type="submit">Add Data</button>
           </form>
 
-          <form onSubmit={this.handleLogOut}>
-            <button type="submit" className="btn btn-primary">Log Out</button>
-          </form>
-        
         </div>
       
         <form onSubmit={this.addMessage.bind(this)}>

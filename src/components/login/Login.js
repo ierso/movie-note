@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { login, resetPassword } from './lib/auth'
+import { login, resetPassword } from '../../lib/auth'
 
 function setErrorMsg(error) {
   return {
@@ -7,20 +7,8 @@ function setErrorMsg(error) {
   }
 }
 
-export const Login = (props) => {
-
-  setErrorMsg = (error) => {
-        return {
-        loginMessage: error
-        }
-  }
-  
-  resetPassword = () => {
-    resetPassword(this.email.value)
-      .then(() => this.setState(setErrorMsg(`Password reset email sent to ${this.email.value}.`)))
-      .catch((error) => this.setState(setErrorMsg(`Email address not found.`)))
-  }
-
+export default class Login extends Component {
+  state = { loginMessage: null }
   handleSubmit = (e) => {
     e.preventDefault()
     login(this.email.value, this.pw.value)
@@ -28,10 +16,15 @@ export const Login = (props) => {
           this.setState(setErrorMsg('Invalid username/password.'))
         })
   }
-  
-
+  resetPassword = () => {
+    resetPassword(this.email.value)
+      .then(() => this.setState(setErrorMsg(`Password reset email sent to ${this.email.value}.`)))
+      .catch((error) => this.setState(setErrorMsg(`Email address not found.`)))
+  }
+  render () {
     return (
-      <div className="Login container">
+      <div className="col-sm-12 auth-form">
+        <h1> Login </h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Email</label>
@@ -52,7 +45,10 @@ export const Login = (props) => {
           <button type="submit" className="btn btn-primary">Login</button>
         </form>
       </div>
-    );
+    )
+  }
+}
+
 
 
 
