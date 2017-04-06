@@ -92,17 +92,12 @@ class App extends Component {
     this.setState({text: ''});
   }
 
-  componentWillUpdate(nextProps, nextState){
-    // Called when the props and/or state change
-  }
-
   updateSearch = (e) => {
     this.search(e.target.value)
     this.setState({
       searchValue: e.target.value
     })
   }
-
 
   search = (query) => {
     loadMovies(query).then(
@@ -244,7 +239,8 @@ class App extends Component {
               <SideBar watchList={this.state.watchList}/>
             </div>
             <div className="col-md-9 test">
-              {React.cloneElement(this.props.children,this.state)} 
+              <Movie />
+              {/*{React.cloneElement(this.props.children,this.state)} */}
             </div>
           </div>
         </div>

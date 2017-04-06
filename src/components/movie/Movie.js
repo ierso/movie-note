@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-// import {addMovie} from '../../lib/watchListHelpers'
+import {addMovie} from '../../lib/watchListHelpers'
 // import {loadMovies} from '../../lib/movieService'
+
+// import firebase from 'firebase';
 
 class Movie extends Component {
   
   constructor(){
     super();
     this.state = {
-      currentMovie: 'heat',
-      name: 'test',
       movie: {}
     }
   }
@@ -46,17 +46,28 @@ class Movie extends Component {
     )
   }
 
-  addMovie = () =>{
-    console.log('adding movie to watch list')
+  watchLater = (e) => {
+    e.preventDefault()
+    // const watchList = this.props.watchList;
+    const newMovie = {id: this.state.movie.id, title: this.state.movie.title}
+    
+    const updatedWatchList = addMovie(this.props.watchList, newMovie)
+    
+    console.log(this.props.watchList)
+  }
+
+  addMovie = () => {
+    
+    console.log();
+   
     // const newMovie = this.state.movie
     // const watchList = this.props.watchList;
     // console.log(watchList)
     // const updatedWatchList = addMovie(this.props.watchList, newMovie)
-    this.setState({
-      currentMovie: ''
-    })
-    console.log(this.state.currentMovie)
+   
+    
   }
+  
   
   render() {
   
@@ -89,7 +100,7 @@ class Movie extends Component {
             <h4>{this.state.movie.overview}</h4>
           </div>
 
-          <button onClick={this.addMovie} className="button">Watch Later</button>
+          <button onClick={this.watchLater} className="button">Watch Later</button>
 
         </div>         
       </div>
