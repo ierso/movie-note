@@ -6,11 +6,10 @@ const upcomingUrl = `http://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey
 
 const tmdbTitleApi = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`
 
-export const loadRecentMovies = (title) => {
-  return fetch(tmdbTitleApi + title)
+export const loadRecentMovies = () => {
+  return fetch(upcomingUrl)
     .then(res => res.json())
     .then((data)=>{
-      console.log(`time will tell ${data.results}`)
       return data.results
     })
 }
@@ -19,7 +18,6 @@ export const loadMovies = (title) => {
   return fetch(tmdbTitleApi + title)
     .then(res => res.json())
     .then((data)=>{
-      console.log(`time will tell ${data.results}`)
       return data.results
     })
 }

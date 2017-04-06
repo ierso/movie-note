@@ -17,6 +17,7 @@ import Register from './components/register/Register'
 import {MovieSearch} from './components/movieSearch/MovieSearch'
 import {SideBar} from './components/sideBar'
 import {MovieList} from './components/movieList'
+
 import {loadMovies} from './lib/movieService'
 
 
@@ -32,6 +33,7 @@ class App extends Component {
     this.state = {
       movies: [],
       messages: [],
+     
       watchList: [
         {id: 1, title: 'Home Alone'},
         {id: 2, title: 'Batman Begins'}
@@ -46,7 +48,7 @@ class App extends Component {
 
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
-
+   
     // Listen to auth state changes
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser) {
@@ -70,6 +72,7 @@ class App extends Component {
       this.setState({ messages: [message].concat(this.state.messages) });
     })
   }
+
 
   componentWillUnmount() {  
     this.firebaseRef.off();
@@ -108,6 +111,8 @@ class App extends Component {
       }
     )
   }
+
+  
 
 
   hideMenu = () => {
@@ -173,6 +178,12 @@ class App extends Component {
       isModalOpen: false
     })
   }
+
+  butts = () => {
+    console.log('just to test')
+  }
+
+
 
   render() {
 

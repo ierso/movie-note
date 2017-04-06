@@ -2,7 +2,7 @@ import  React from 'react'
 // import { Link } from 'react-router';
 
 export const SideBar = (props) => {
-    console.log(props.watchList)
+    
     return (
         <div className="Movie-Note">
           <h1>Movie Note</h1>

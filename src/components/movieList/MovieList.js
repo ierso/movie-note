@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 export const MovieList = (props) => {
 
     if (props.searchValue.length <= 0){
-        console.log("if search menu has no value hide menu")
         return null
     }
 
