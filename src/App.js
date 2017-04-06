@@ -13,7 +13,7 @@ import Modal from './components/modal/Modal'
 import Login from './components/login/Login'
 import Register from './components/register/Register'
 
-
+import {Movie} from './components/movie/Movie'
 import {MovieSearch} from './components/movieSearch/MovieSearch'
 import {SideBar} from './components/sideBar'
 import {MovieList} from './components/movieList'
@@ -174,13 +174,18 @@ class App extends Component {
     })
   }
 
-  butts = () => {
-    console.log('just to test')
+  butts = (newState) => {
+    console.log('BIG BUTTS')
+    this.setState({
+      watchList: newState
+    })
   }
-
+  
 
 
   render() {
+
+   
 
     return (
       <div className="App">
@@ -239,8 +244,14 @@ class App extends Component {
               <SideBar watchList={this.state.watchList}/>
             </div>
             <div className="col-md-9 test">
-              <Movie />
-              {/*{React.cloneElement(this.props.children,this.state)} */}
+             
+              {React.cloneElement(
+                this.props.children,
+                {watchList:this.state.watchList,
+                butts: this.butts
+                }
+                )
+              } 
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import {addMovie} from '../../lib/watchListHelpers'
 
 class Movie extends Component {
   
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       movie: {}
@@ -48,12 +48,19 @@ class Movie extends Component {
 
   watchLater = (e) => {
     e.preventDefault()
+    
     // const watchList = this.props.watchList;
-    const newMovie = {id: this.state.movie.id, title: this.state.movie.title}
+    const newMovie = {id: this.state.movie.id, title: this.state.movie.title};
+    
+    
     
     const updatedWatchList = addMovie(this.props.watchList, newMovie)
     
-    console.log(this.props.watchList)
+    this.props.butts(updatedWatchList);
+    
+    
+    
+    // console.log(this.props.watchList)
   }
 
   addMovie = () => {
@@ -74,6 +81,11 @@ class Movie extends Component {
     return (
       <div className="Movie row">
         <div className="movie-poster col-md-4">
+          {/*{this.state.watchList.map((movie)=>{
+            return(
+              <li>{movie.title}</li>
+            )
+          })}*/}
           <img className="movie-poster" src={'http://image.tmdb.org/t/p/w185'+this.state.movie.poster_path} alt={this.state.movie.original_title}
           />
         </div>
