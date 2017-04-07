@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addMovie} from '../../lib/watchListHelpers'
+import {addMovie, findId} from '../../lib/watchListHelpers'
 // import {loadMovies} from '../../lib/movieService'
 
 // import firebase from 'firebase';
@@ -16,9 +16,8 @@ class Movie extends Component {
   componentWillReceiveProps(nextProps){
     this.fetchMovie(nextProps.params.movieTitle);
   }
-
+  
   fetchMovie(movieTitle) {
-    console.log(`bitches ${movieTitle}`)
     fetch(`https://api.themoviedb.org/3/movie/${movieTitle}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query`)
     .then(res => res.json())
     .then((data)=>{
@@ -29,7 +28,6 @@ class Movie extends Component {
       }
     )
   }
-
 
    componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
@@ -50,15 +48,12 @@ class Movie extends Component {
     e.preventDefault()
     
     // const watchList = this.props.watchList;
-    const newMovie = {id: this.state.movie.id, title: this.state.movie.title};
-    
-    
+    const newMovie = {id: this.state.movie.id, title: this.state.movie.title, remove: false};
     
     const updatedWatchList = addMovie(this.props.watchList, newMovie)
     
-    this.props.butts(updatedWatchList);
-    
-    
+    this.props.addToWatchList(updatedWatchList);
+  
     
     // console.log(this.props.watchList)
   }

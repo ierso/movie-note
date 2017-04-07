@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { login, resetPassword } from '../../lib/auth'
 
+
 function setErrorMsg(error) {
   return {
     loginMessage: error
@@ -8,10 +9,14 @@ function setErrorMsg(error) {
 }
 
 export default class Login extends Component {
+  constructor(props){
+    super();
+  }
   state = { loginMessage: null }
   handleSubmit = (e) => {
     e.preventDefault()
     login(this.email.value, this.pw.value)
+      .then(()=>{this.props.closeModal();})
       .catch((error) => {
           this.setState(setErrorMsg('Invalid username/password.'))
         })

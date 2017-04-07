@@ -21,6 +21,9 @@ import {MovieList} from './components/movieList'
 import {loadMovies} from './lib/movieService'
 
 
+import {findId, toggleRemove, removeMovie, updateRemove} from './lib/watchListHelpers'
+
+
 // import {addMovie} from './lib/watchListHelpers'
 
 
@@ -33,10 +36,9 @@ class App extends Component {
     this.state = {
       movies: [],
       messages: [],
-     
+      loggedIn: "not logged in",
       watchList: [
-        {id: 1, title: 'Home Alone'},
-        {id: 2, title: 'Batman Begins'}
+      
       ],
       searchValue: '',
       poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg',
@@ -48,16 +50,22 @@ class App extends Component {
 
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
-   
+   findId(2, this.state.watchList)
     // Listen to auth state changes
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser) {
         console.log(firebaseUser);
+        this.setState({
+          loggedIn: "logged in"
+        })
         //hide login
         //hide register
         //show log out button
       } else {
         console.log('not logged in');
+        this.setState({
+          loggedIn: "not logged in"
+        })
         //show login
         //show register
         //hide log out button
@@ -132,13 +140,13 @@ class App extends Component {
       let uid = user.uid;
       console.log(uid)
       // adding data to user
-      firebase.database().ref('/users/'+uid).push({
-          watchLater: {
-            foo: 'abc',
-            bar: 'pqr'
-          }
-      });
+      firebase.database().ref('/users/'+uid).push(this.state.watchList);
     }
+  }
+
+  removeData = (e) => {
+    e.preventDefault();
+    
   }
 
   handleLogOut = (e) => {
@@ -168,27 +176,46 @@ class App extends Component {
   }
 
   closeModal = (e) => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     this.setState({ 
       isModalOpen: false
     })
   }
 
-  butts = (newState) => {
-    console.log('BIG BUTTS')
+  addToWatchList = (newState) => {
+    console.log(newState)
     this.setState({
       watchList: newState
     })
   }
+
+  removeMovie = (id) => {
+    
+    const movie = findId(id, this.state.watchList)
+    const removed = toggleRemove(movie)
+    const index = this.state.watchList.indexOf(movie);
+    const updatedWatchList = updateRemove(this.state.watchList, removed)
+    this.setState({
+      watchList: updatedWatchList
+    })
+    
+    if(!movie.remove){
+      const updatedWatchList = removeMovie(this.state.watchList, index)
+      this.setState({
+        watchList: updatedWatchList
+      })
+    }
+    
+  }
   
-
-
   render() {
 
-   
 
     return (
       <div className="App">
+        <h1>{this.state.loggedIn}</h1>
         <Link to="/">GO HOME</Link>
         <button onClick={this.openModalLogin}>Login</button>
         <button onClick={this.openModalRegister}>Register</button>
@@ -196,8 +223,8 @@ class App extends Component {
         
         <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
           
-          { this.state.login ? <Login /> : null }
-          { this.state.register ? <Register /> : null }
+          { this.state.login ? <Login closeModal={this.closeModal}/> : null }
+          { this.state.register ? <Register closeModal={this.closeModal}/> : null }
           
           <p><button onClick={this.closeModal}>Close</button></p>
         </Modal>
@@ -241,14 +268,14 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col-md-3 test">
-              <SideBar watchList={this.state.watchList}/>
+              <SideBar removeMovie={this.removeMovie} watchList={this.state.watchList}/>
             </div>
             <div className="col-md-9 test">
              
               {React.cloneElement(
                 this.props.children,
                 {watchList:this.state.watchList,
-                butts: this.butts
+                addToWatchList: this.addToWatchList
                 }
                 )
               } 

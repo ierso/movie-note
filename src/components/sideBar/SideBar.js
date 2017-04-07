@@ -9,7 +9,10 @@ export const SideBar = (props) => {
           <ul>
             {props.watchList.map((movie)=>{
               return (
-               <li key={movie.id}>{movie.title}</li>
+               <li key={movie.id}>
+                 <input type="checkbox" onChange={() => props.removeMovie(movie.id)} defaultChecked={movie.remove}/> 
+                 {movie.title}
+               </li>
               )
             })}
           </ul>

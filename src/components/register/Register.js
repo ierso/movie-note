@@ -8,12 +8,21 @@ function setErrorMsg(error) {
 }
 
 export default class Register extends Component {
+
+  constructor(props){
+    super();
+  }
   
   state = { registerError: null }
   handleSubmit = (e) => {
     e.preventDefault()
     auth(this.email.value, this.pw.value)
+      .then(()=>{this.props.closeModal();})
       .catch(e => this.setState(setErrorMsg(e)))
+  }
+
+  componentWillMount(){
+    console.log(this.props)
   }
 
   render () {
