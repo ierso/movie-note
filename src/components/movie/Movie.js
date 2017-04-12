@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addMovie, findId} from '../../lib/watchListHelpers'
+import {addMovie} from '../../lib/watchListHelpers'
 // import {loadMovies} from '../../lib/movieService'
 
 // import firebase from 'firebase';

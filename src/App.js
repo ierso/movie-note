@@ -13,7 +13,7 @@ import Modal from './components/modal/Modal'
 import Login from './components/login/Login'
 import Register from './components/register/Register'
 
-import {Movie} from './components/movie/Movie'
+// import {Movie} from './components/movie/Movie'
 import {MovieSearch} from './components/movieSearch/MovieSearch'
 import {SideBar} from './components/sideBar'
 import {MovieList} from './components/movieList'
@@ -34,12 +34,11 @@ class App extends Component {
     super(props);
   
     this.state = {
+      test: [],
       movies: [],
       messages: [],
       loggedIn: "not logged in",
-      watchList: [
-      
-      ],
+      watchList: [],
       searchValue: '',
       poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg',
       isModalOpen: false,
@@ -50,7 +49,14 @@ class App extends Component {
 
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
-   findId(2, this.state.watchList)
+  
+   
+  //  this.firebaseRef = new Firebase("https://ReactFireTodoApp.firebaseio.com/items/");
+  //  this.firebaseRef.on("child_added", function(dataSnapshot) {
+
+  //  do i need this bottom code?
+  //  findId(2, this.state.watchList)
+    
     // Listen to auth state changes
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser) {
@@ -58,6 +64,32 @@ class App extends Component {
         this.setState({
           loggedIn: "logged in"
         })
+        
+        const self = this
+        const ref = firebase.database().ref().child('/users/'+firebaseUser.uid)
+        const watchRef = ref.child('watchlist')
+        
+        // if there is no data in the database ignore this bottom part
+
+        watchRef.on('value', function(snapshot){
+        
+          let watchList = []
+          let movies = snapshot.val()
+          let keys = Object.keys(movies)
+          
+          keys.map(function(key){
+            watchList.push(movies[key])
+            return watchList
+          })
+          
+          self.setState({
+            watchList: watchList
+          })
+
+        })
+          
+
+
         //hide login
         //hide register
         //show log out button
@@ -125,24 +157,6 @@ class App extends Component {
     console.log('hiding menu')
   }
   
-  
-  // Adding Data to User
-
-  AddData = (e) => {
-    e.preventDefault();
-    console.log('Adding data to user')
-    var user = firebase.auth().currentUser;
-    console.log(user)
-
-    if (user != null) {
-      console.log(user)
-      
-      let uid = user.uid;
-      console.log(uid)
-      // adding data to user
-      firebase.database().ref('/users/'+uid).push(this.state.watchList);
-    }
-  }
 
   removeData = (e) => {
     e.preventDefault();
@@ -185,10 +199,31 @@ class App extends Component {
   }
 
   addToWatchList = (newState) => {
+    console.log(newState.length)
+    var counter = newState.length
+    var newMovie = newState[counter-1]
     console.log(newState)
+
+    console.log(newMovie)
+
     this.setState({
       watchList: newState
     })
+
+    // var newMovie = 
+
+    console.log('Adding data to user')
+    var user = firebase.auth().currentUser;
+    console.log(user)
+
+    if (user != null) {
+      console.log(user)
+      
+      let uid = user.uid;
+      console.log(uid)
+      // adding data to user
+      firebase.database().ref('/users/'+uid+'/watchlist').push(newMovie);
+    }
   }
 
   removeMovie = (id) => {
@@ -215,6 +250,8 @@ class App extends Component {
 
     return (
       <div className="App">
+        <h2>{this.state.test}</h2>
+
         <h1>{this.state.loggedIn}</h1>
         <Link to="/">GO HOME</Link>
         <button onClick={this.openModalLogin}>Login</button>
@@ -228,14 +265,6 @@ class App extends Component {
           
           <p><button onClick={this.closeModal}>Close</button></p>
         </Modal>
-
-        <div className="container">
-          
-          <form onSubmit={this.AddData}>
-            <button type="submit">Add Data</button>
-          </form>
-
-        </div>
       
         <form onSubmit={this.addMessage.bind(this)}>
         <input type="text" ref={ el => this.inputEl = el }/>

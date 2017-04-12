@@ -1,7 +1,7 @@
 const apiKey = 'c2d6b648cfb303b5ae02208a5c91d208';
 
-const baseUrl = 'http://www.omdbapi.com/?s='
-const baseUrlID = 'http://www.omdbapi.com/?i='
+// const baseUrl = 'http://www.omdbapi.com/?s='
+// const baseUrlID = 'http://www.omdbapi.com/?i='
 const upcomingUrl = `http://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`
 
 const tmdbTitleApi = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`
