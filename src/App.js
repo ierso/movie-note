@@ -35,8 +35,8 @@ class App extends Component {
   
     this.state = {
       test: [],
+      keys: [],
       movies: [],
-      messages: [],
       loggedIn: "not logged in",
       watchList: [],
       searchValue: '',
@@ -49,7 +49,7 @@ class App extends Component {
 
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
-  
+  console.log(this.state.keys)
    
   //  this.firebaseRef = new Firebase("https://ReactFireTodoApp.firebaseio.com/items/");
   //  this.firebaseRef.on("child_added", function(dataSnapshot) {
@@ -72,7 +72,7 @@ class App extends Component {
         // if there is no data in the database ignore this bottom part
 
         watchRef.on('value', function(snapshot){
-        
+         
           let watchList = []
           let movies = snapshot.val()
           let keys = Object.keys(movies)
@@ -81,10 +81,14 @@ class App extends Component {
             watchList.push(movies[key])
             return watchList
           })
+
+          if( watchList != null){
+            self.setState({
+              watchList: watchList
+            })
+          }
+
           
-          self.setState({
-            watchList: watchList
-          })
 
         })
           
@@ -124,12 +128,6 @@ class App extends Component {
     /* Send the message to Firebase */
     fire.database().ref('messages').push( this.inputEl.value );
     this.inputEl.value = ''; // <- clear the input
-  }
-
-  pushToFirebase(event) {
-    event.preventDefault();
-    this.firebaseRef.push({text: this.state.text});
-    this.setState({text: ''});
   }
 
   updateSearch = (e) => {
@@ -199,35 +197,32 @@ class App extends Component {
   }
 
   addToWatchList = (newState) => {
-    console.log(newState.length)
-    var counter = newState.length
-    var newMovie = newState[counter-1]
-    console.log(newState)
-
-    console.log(newMovie)
+     
+    let counter = newState.length
+    let newMovie = newState[counter-1]
 
     this.setState({
       watchList: newState
     })
 
-    // var newMovie = 
-
     console.log('Adding data to user')
     var user = firebase.auth().currentUser;
-    console.log(user)
-
+   
     if (user != null) {
-      console.log(user)
-      
+     
       let uid = user.uid;
-      console.log(uid)
+     
+      console.log(newMovie)
       // adding data to user
-      firebase.database().ref('/users/'+uid+'/watchlist').push(newMovie);
+      firebase.database()
+      .ref('/users/'+uid+'/watchlist/'+this.state.watchList.length)
+      .set(newMovie)
+      
     }
   }
 
   removeMovie = (id) => {
-    
+   
     const movie = findId(id, this.state.watchList)
     const removed = toggleRemove(movie)
     const index = this.state.watchList.indexOf(movie);
@@ -242,6 +237,29 @@ class App extends Component {
         watchList: updatedWatchList
       })
     }
+
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+     
+      if(firebaseUser) {
+       
+        this.setState({
+          loggedIn: "logged in"
+        })
+        
+
+        firebase.database()
+        .ref('/users/'+firebaseUser.uid+'/watchlist/'+id)
+        .remove()
+      
+      
+      } else {
+        console.log('not logged in');
+        this.setState({
+          loggedIn: "not logged in"
+        })
+
+      }
+    });
     
   }
   
@@ -266,15 +284,7 @@ class App extends Component {
           <p><button onClick={this.closeModal}>Close</button></p>
         </Modal>
       
-        <form onSubmit={this.addMessage.bind(this)}>
-        <input type="text" ref={ el => this.inputEl = el }/>
-        <input type="submit"/>
-        <ul>
-          { /* Render the list of messages */
-            this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
-          }
-        </ul>
-        </form>
+        
         <div className="container test">
           <div className="row test">
             <div className="col-md-12">
