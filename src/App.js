@@ -10,6 +10,7 @@ import './App.css';
 import Modal from './components/modal/Modal'
 
 // Auth
+import LoginButtons from './components/loginButtons/LoginButtons'
 import Login from './components/login/Login'
 import Register from './components/register/Register'
 
@@ -22,6 +23,7 @@ import {loadMovies} from './lib/movieService'
 
 
 import {findId, toggleRemove, removeMovie, updateRemove} from './lib/watchListHelpers'
+
 
 
 // import {addMovie} from './lib/watchListHelpers'
@@ -47,27 +49,30 @@ class App extends Component {
     }
   }
 
+  loggedIn(){
+    this.setState({
+      login: true
+    })
+  }
+  loggedOut(){
+    this.setState({
+      login: false
+    })
+  }
+
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
-  console.log(this.state.keys)
-   
-  //  this.firebaseRef = new Firebase("https://ReactFireTodoApp.firebaseio.com/items/");
-  //  this.firebaseRef.on("child_added", function(dataSnapshot) {
-
-  //  do i need this bottom code?
-  //  findId(2, this.state.watchList)
-    
+ 
     // Listen to auth state changes
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser) {
-        console.log(firebaseUser);
-        this.setState({
-          loggedIn: "logged in"
-        })
+
+        // this.setLogInMessage()
+        this.loggedIn()
         
-        const self = this
-        const ref = firebase.database().ref().child('/users/'+firebaseUser.uid)
-        const watchRef = ref.child('watchlist')
+        let self = this
+        let ref = firebase.database().ref().child('/users/'+firebaseUser.uid)
+        let watchRef = ref.child('watchlist')
         
         // if there is no data in the database ignore this bottom part
 
@@ -88,23 +93,13 @@ class App extends Component {
             })
           }
 
-          
-
         })
-          
-
-
-        //hide login
-        //hide register
-        //show log out button
+        
       } else {
+        this.loggedOut()
         console.log('not logged in');
-        this.setState({
-          loggedIn: "not logged in"
-        })
-        //show login
-        //show register
-        //hide log out button
+        // this.setLogOutMessage()
+
       }
     });
   
@@ -122,13 +117,6 @@ class App extends Component {
     this.firebaseRef.off();
   };
 
-  
-  addMessage(e){
-    e.preventDefault();
-    /* Send the message to Firebase */
-    fire.database().ref('messages').push( this.inputEl.value );
-    this.inputEl.value = ''; // <- clear the input
-  }
 
   updateSearch = (e) => {
     this.search(e.target.value)
@@ -144,8 +132,6 @@ class App extends Component {
       }
     )
   }
-
-  
 
 
   hideMenu = () => {
@@ -222,17 +208,18 @@ class App extends Component {
   }
 
   removeMovie = (id) => {
-   
-    const movie = findId(id, this.state.watchList)
-    const removed = toggleRemove(movie)
-    const index = this.state.watchList.indexOf(movie);
-    const updatedWatchList = updateRemove(this.state.watchList, removed)
+    
+    let movie = findId(id, this.state.watchList)
+    let removed = toggleRemove(movie)
+    let index = this.state.watchList.indexOf(movie);
+    let updatedWatchList = updateRemove(this.state.watchList, removed)
+    console.log(index)
     this.setState({
       watchList: updatedWatchList
     })
     
     if(!movie.remove){
-      const updatedWatchList = removeMovie(this.state.watchList, index)
+      let updatedWatchList = removeMovie(this.state.watchList, index)
       this.setState({
         watchList: updatedWatchList
       })
@@ -242,21 +229,15 @@ class App extends Component {
      
       if(firebaseUser) {
        
-        this.setState({
-          loggedIn: "logged in"
-        })
+        // this.setLogInMessage()
         
-
         firebase.database()
-        .ref('/users/'+firebaseUser.uid+'/watchlist/'+id)
+        .ref('/users/'+firebaseUser.uid+'/watchlist/'+index)
         .remove()
       
-      
       } else {
-        console.log('not logged in');
-        this.setState({
-          loggedIn: "not logged in"
-        })
+        
+        // this.setLogOutMessage()
 
       }
     });
@@ -270,11 +251,20 @@ class App extends Component {
       <div className="App">
         <h2>{this.state.test}</h2>
 
-        <h1>{this.state.loggedIn}</h1>
+        <h1>{this.state.let}</h1>
         <Link to="/">GO HOME</Link>
-        <button onClick={this.openModalLogin}>Login</button>
-        <button onClick={this.openModalRegister}>Register</button>
-        <button onClick={this.handleLogOut}>Log Out</button>
+          <LoginButtons 
+            loggedIn={this.state.login} 
+            openModalLogin={this.openModalLogin}
+            openModalRegister={this.openModalRegister}
+            handleLogOut={this.handleLogOut}
+          />
+        
+          {/*<button onClick={this.openModalLogin}>Login</button>*/}
+
+          {/*<button onClick={this.openModalRegister}>Register</button>*/}
+
+          {/*<button onClick={this.handleLogOut}>Log Out</button>*/}
         
         <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
           

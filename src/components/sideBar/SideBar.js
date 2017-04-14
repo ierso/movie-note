@@ -1,5 +1,5 @@
 import  React from 'react'
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 export const SideBar = (props) => {
     
@@ -11,15 +11,11 @@ export const SideBar = (props) => {
               return (
                <li key={movie.id}>
                  <input type="checkbox" onChange={() => props.removeMovie(movie.id)} defaultChecked={movie.remove}/> 
-                 {movie.title}
+                 <Link activeStyle={{color: 'red'}} to={`/movie/${movie.id}`}>{movie.title}</Link>
                </li>
               )
             })}
           </ul>
-          {/*<ul>
-            <li><Link activeStyle={{color: 'red'}} to="/movie/robocop">Movie Test 1</Link></li>
-            <li><Link activeStyle={{color: 'red'}} to="/movie/batman">Movie Tes 2</Link></li>
-          </ul>*/}
         </div>
     )
 }
