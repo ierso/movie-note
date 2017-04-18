@@ -104,7 +104,7 @@ class Movie extends Component {
 
     return (
       <div className="Movie row" style={style}>
-        <div className="movie-poster col-md-4">
+        <div className="movie-poster-wrapper col-md-4">
           <img className="movie-poster" src={'http://image.tmdb.org/t/p/w185'+this.state.movie.poster_path} alt={this.state.movie.original_title}
           />
         </div>
