@@ -88,19 +88,24 @@ class Movie extends Component {
     }
     
     let directors = [];
-    this.state.movie.credits.crew.forEach(function (task) {
-        if (task.job === 'Director') {
-            directors.push({name:task.name, img: task.profile_path});
+    this.state.movie.credits.crew.forEach(function (person) {
+        if (person.job === 'Director') {
+            directors.push({name:person.name, img: person.profile_path});
         }
     })
 
     let writers = [];
-    this.state.movie.credits.crew.forEach(function (task) {
-        if (task.department === 'Writing') {
-            writers.push({name:task.name, img: task.profile_path});
+    this.state.movie.credits.crew.forEach(function (person) {
+        if (person.department === 'Writing') {
+            writers.push({name:person.name, img: person.profile_path});
         }
     })
 
+    let cast = [];
+    this.state.movie.credits.cast.forEach(function (person) {
+      cast.push({name:person.name, img: person.profile_path, character: person.character});
+    })
+    console.log(cast)
     
   
     return (
@@ -153,46 +158,43 @@ class Movie extends Component {
             <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
           </div>
         
-        
-        <div className="crew">
-          <div className="director">
-            <h4>Director</h4>
+        <div className="credits">
+          <div className="crew">
+            <div className="director">
+              <h4>Directors</h4>
+              <hr></hr>
+                {directors.map(function(director, index){
+                  return(
+                    <div key={index}>
+                      <img className="movie-profile-img" src={
+                        `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
+                        }  alt={director.name}/>
+                      {director.name}
+                    </div>
+                  )
+                })}
+              
+            </div>
+            <div className="written">
+              <h4>Writters:</h4>
+              <hr></hr>
+                {writers.map(function(writer, index){
+                  return(
+                    <div className="writer" key={index}>
+                      <img className="movie-profile-img" src={
+                        `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
+                        }  alt={writer.name}/>
+                      {writer.name}
+                    </div>
+                  )
+                })}
+            </div>
+          </div>   
+          <div className="cast">
+            <h4>Stars:</h4>
             <hr></hr>
-              {directors.map(function(director, index){
-                return(
-                  <div key={index}>
-                    <img className="movie-profile-img" src={
-                      `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
-                      }  alt={director.name}/>
-                    {director.name}
-                  </div>
-                )
-              })}
-            
           </div>
-          <div className="written">
-            <h4>Written By:</h4>
-            <hr></hr>
-              {writers.map(function(writer, index){
-                return(
-                  <div className="writer" key={index}>
-                    <img className="movie-profile-img" src={
-                      `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
-                      }  alt={writer.name}/>
-                    {writer.name}
-                  </div>
-                )
-              })}
-            
-          </div>
-          
-          
-
-          
-
-          
-
-        </div>         
+        </div>
       </div>
     </div>
     );

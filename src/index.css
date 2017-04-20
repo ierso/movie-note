@@ -66,12 +66,11 @@ img.recent-movie-poster{
   justify-content: space-between;
 }
 .movie-media{
-  flex-basis: 200px;
-  flex: 3;
+  flex-basis: 350px;
 }
 img.movie-poster-img{
   border: red solid 1px;
-  width: 80%;
+  width: 85%;
   border-radius: 5px;
 }
 .movie-content{
@@ -88,6 +87,22 @@ img.movie-poster-img{
 
 .movie-profile-img{
   border-radius: 40px;
+}
+
+.credits{
+  width: 100%;
+  border: black solid 3px;
+  display: flex;
+  justify-content: space-between;
+}
+.crew{
+  border: red solid 1px;
+  flex: 1;
+  
+}
+.cast{
+  border: red solid 1px;
+  flex: 2;
 }
 
 
