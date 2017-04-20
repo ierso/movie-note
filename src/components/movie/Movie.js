@@ -61,8 +61,8 @@ class Movie extends Component {
         movie => {
           this.setState({movie})
       })
+      
     }
-
     
 
   watchLater = (e) => {
@@ -78,7 +78,6 @@ class Movie extends Component {
   }
 
 
-  
   render() {
 
     // console.log(JSON.stringify(this.state.movie))
@@ -91,53 +90,26 @@ class Movie extends Component {
     let directors = [];
     this.state.movie.credits.crew.forEach(function (task) {
         if (task.job === 'Director') {
-            directors.push(task.name);
+            directors.push({name:task.name, img: task.profile_path});
         }
     })
 
     let writers = [];
     this.state.movie.credits.crew.forEach(function (task) {
         if (task.department === 'Writing') {
-            writers.push(task.name);
+            writers.push({name:task.name, img: task.profile_path});
         }
     })
 
+    
+  
     return (
-      <div className="Movie row" style={style}>
-        <div className="movie-poster-wrapper col-md-4">
-          <img className="movie-poster" src={'http://image.tmdb.org/t/p/w185'+this.state.movie.poster_path} alt={this.state.movie.original_title}
-          />
-        </div>
-        <div className="movie-info col-md-8">
-          <div className="title">
-            <h1>{this.state.movie.original_title} <span>{this.state.movie.imdbRating}</span></h1>
+      <div className="movie" style={style}>
+        <div className="movie-media">
+          <div className="movie-poster">
+            <img className="movie-poster-img" src={'http://image.tmdb.org/t/p/w500'+this.state.movie.poster_path} alt={this.state.movie.original_title}
+            />
           </div>
-          
-          <div className="year">
-            <h4><span>Release Date:</span> {this.state.movie.release_date}</h4>
-          </div>
-          <div className="runtime">
-            <h4><span>Runtime:</span> {this.state.movie.runtime} minutes</h4>
-          </div>
-          <div className="director">
-            <h4><span>Directed By:</span> {directors.join(', ')}</h4>
-          </div>
-           <div className="written">
-            <h4><span>Written By:</span> {writers.join(', ')}</h4>
-          </div>
-          <div className="genre">
-            <h4><span>Genre:</span> {
-              this.state.movie.genres.map(function(genre){
-               return(<li key={genre.id}>{genre.name}</li>)
-              })
-            }</h4>
-          </div>
-          <div className="plot">
-            <h4>{this.state.movie.overview}</h4>
-          </div>
-
-          <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
-
           <div className="videos">
             Youtube Videos id
             {/*{this.state.movie.videos.results.map(function(video){
@@ -148,9 +120,81 @@ class Movie extends Component {
               )
             })}*/}
           </div>
+        </div>
+        <div className="movie-content">
+          <div className="movie-info">
+            <div className="title">
+              <h1>{this.state.movie.original_title}
+                <sup className="year">
+                  {this.state.movie.release_date}
+                </sup>
+              </h1>
+            </div>
+            <div className="plot">
+              <p>{this.state.movie.overview}</p>
+            </div>
+            <div className="runtime">
+              <h4><span>Runtime:</span> {this.state.movie.runtime} minutes</h4>
+            </div>
+            <div className="genre">
+              <h4><span>Genre:</span></h4>
+              
+                {
+                this.state.movie.genres.map(function(genre, index){
+                  return(
+                    <div key={index}>
+                      {genre.name}
+                    </div>
+                    )
+                  })
+                }
+              
+            </div>
+            <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
+          </div>
+        
+        
+        <div className="crew">
+          <div className="director">
+            <h4>Director</h4>
+            <hr></hr>
+              {directors.map(function(director, index){
+                return(
+                  <div key={index}>
+                    <img className="movie-profile-img" src={
+                      `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
+                      }  alt={director.name}/>
+                    {director.name}
+                  </div>
+                )
+              })}
+            
+          </div>
+          <div className="written">
+            <h4>Written By:</h4>
+            <hr></hr>
+              {writers.map(function(writer, index){
+                return(
+                  <div className="writer" key={index}>
+                    <img className="movie-profile-img" src={
+                      `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
+                      }  alt={writer.name}/>
+                    {writer.name}
+                  </div>
+                )
+              })}
+            
+          </div>
+          
+          
+
+          
+
+          
 
         </div>         
       </div>
+    </div>
     );
   }
 }

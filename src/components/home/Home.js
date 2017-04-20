@@ -27,17 +27,19 @@ class Home extends Component {
   render() {
    
     return (
-      <div className="Home">
-        <h1>Home / Recent Movies</h1>
-        <div className="row">
+      <div className="recent-movies">
+        <div className="recent-movies-title">
+          <h1>Home / Recent Movies</h1>
+        </div>
+        <div className="recent-movies-list">
           {this.state.recentMovies.map((movie) =>{
             return(
-              <div className="col-md-3" key={movie.id}>
+              <div className="recent-movie" key={movie.id}>
                 <Link to={`/movie/${movie.id}`}>
                   <img className="recent-movie-poster" src={
-                    (`http://image.tmdb.org/t/p/w185${movie.poster_path}` === 'N/A')
-                    ? `http://image.tmdb.org/t/p/w185${movie.poster_path}`
-                    : `http://image.tmdb.org/t/p/w185${movie.poster_path}`
+                    (`http://image.tmdb.org/t/p/w300${movie.poster_path}` === 'N/A')
+                    ? `http://image.tmdb.org/t/p/w300${movie.poster_path}`
+                    : `http://image.tmdb.org/t/p/w300${movie.poster_path}`
                     } alt={movie.title}/>
                 </Link>
               </div>

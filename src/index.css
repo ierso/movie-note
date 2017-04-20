@@ -4,9 +4,96 @@ body {
   font-family: sans-serif;
 }
 
-.test{
+/*main overall*/
+
+.app{
+  display: flex;
+}
+.sidebar{
+  min-width: 300px;
+  border: red solid 3px;
+}
+.movie-note{
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  border: blue solid 3px;
+  
+}
+.header{ 
+  flex-direction: column;
+  width: 100%;
+  border: green dashed 2px;
+}
+.main{
+  width: 100%;
+  border: pink dashed 2px;
+  margin: 25px;
+}
+
+
+/*home*/
+.recent-movies{
+  display: flex;
+  flex-wrap: wrap;
+}
+.recent-movies-title{
+  width: 100%;
+  flex-direction: column;
   border: red solid 1px;
 }
+.recent-movies-list{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border: red solid 1px;
+  justify-content: center;
+}
+.recent-movie{
+  flex-basis: 200px;
+  text-align: center;
+  margin: 10px 10px 0px 10px;
+}
+img.recent-movie-poster{
+  width: 90%;
+  border-radius: 5px;
+}
+
+/*movie landing page*/
+.movie{
+  border: coral dashed 3px;
+  display: flex;
+  justify-content: space-between;
+}
+.movie-media{
+  flex-basis: 200px;
+  flex: 3;
+}
+img.movie-poster-img{
+  border: red solid 1px;
+  width: 80%;
+  border-radius: 5px;
+}
+.movie-content{
+  flex: 9;
+  display: flex;
+  flex-wrap: wrap;
+  border: red solid 2px;
+}
+.movie-info{
+  width: 100%;
+  flex-direction: column;
+  border: blue solid 3px;
+}
+
+.movie-profile-img{
+  border-radius: 40px;
+}
+
+
+
+
+
 .Movie-Search{
   margin-bottom: 30px;
   position: relative;
@@ -49,17 +136,6 @@ body {
   padding: 10px 0px;
 }
 
-.movie-info{
-  text-align: left;
-}
-.movie-info h4{
-  font-size: 15px;
-}
-
-.movie-poster img{
-  width: 100%;
-}
-
 
 .button{
   background-color: #cc7b19;
@@ -79,13 +155,8 @@ body {
   padding: 20px 100px;
 }
 
-.container{
-  width: 100%;
-}
 
 
-.recent-movie-poster{
-  max-height: 250px;
-  margin-bottom: 30px;
-}
+
+
 

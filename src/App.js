@@ -248,68 +248,60 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <h2>{this.state.test}</h2>
+      <div className="app">
 
-        <h1>{this.state.let}</h1>
-        <Link to="/">GO HOME</Link>
-          <LoginButtons 
-            loggedIn={this.state.login} 
-            openModalLogin={this.openModalLogin}
-            openModalRegister={this.openModalRegister}
-            handleLogOut={this.handleLogOut}
-          />
-        
-          {/*<button onClick={this.openModalLogin}>Login</button>*/}
+        <div className="sidebar">
+          <Link to="/">GO HOME</Link>     
+          <SideBar removeMovie={this.removeMovie} watchList={this.state.watchList}/>
+   
+        </div>
 
-          {/*<button onClick={this.openModalRegister}>Register</button>*/}
-
-          {/*<button onClick={this.handleLogOut}>Log Out</button>*/}
+        <div className="movie-note">
         
-        <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
-          
-          { this.state.login ? <Login closeModal={this.closeModal}/> : null }
-          { this.state.register ? <Register closeModal={this.closeModal}/> : null }
-          
-          <p><button onClick={this.closeModal}>Close</button></p>
-        </Modal>
-      
-        
-        <div className="container test">
-          <div className="row test">
-            <div className="col-md-12">
-              <h1 onClick={this.newPage}>Movie-Note</h1>
-              <div className="Movie-Search">
-                <MovieSearch 
-                updateSearch={this.updateSearch}
-                searchValue={this.state.searchValue}
-                />
-                <div className="Movie-Info">
-                  <MovieList
-                    newPage={this.newPage}
-                    searchValue={this.state.searchValue} 
-                    hideMenu={this.hideMenu}
-                    movies={this.state.movies} 
-                    poster={this.state.poster}/>
-                </div>
+          <div className="header">
+            <LoginButtons 
+              loggedIn={this.state.login} 
+              openModalLogin={this.openModalLogin}
+              openModalRegister={this.openModalRegister}
+              handleLogOut={this.handleLogOut}
+            />
+              
+            <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
+              
+              { this.state.login ? <Login closeModal={this.closeModal}/> : null }
+              { this.state.register ? <Register closeModal={this.closeModal}/> : null }
+              
+              <p><button onClick={this.closeModal}>Close</button></p>
+            </Modal>
+              
+            <h1 onClick={this.newPage}>Movie-Note</h1>
+              
+            <div className="Movie-Search">
+              <MovieSearch 
+              updateSearch={this.updateSearch}
+              searchValue={this.state.searchValue}
+              />
+              <div className="Movie-Info">
+                <MovieList
+                  newPage={this.newPage}
+                  searchValue={this.state.searchValue} 
+                  hideMenu={this.hideMenu}
+                  movies={this.state.movies} 
+                  poster={this.state.poster}/>
               </div>
             </div>
+          </div> 
+              
+          <div className="main">
+            {React.cloneElement(
+              this.props.children,
+              {watchList:this.state.watchList,
+              addToWatchList: this.addToWatchList
+              }
+              )
+            } 
           </div>
-          <div className="row">
-            <div className="col-md-3 test">
-              <SideBar removeMovie={this.removeMovie} watchList={this.state.watchList}/>
-            </div>
-            <div className="col-md-9 test">
-             
-              {React.cloneElement(
-                this.props.children,
-                {watchList:this.state.watchList,
-                addToWatchList: this.addToWatchList
-                }
-                )
-              } 
-            </div>
-          </div>
+          
         </div>
       </div>
     );
