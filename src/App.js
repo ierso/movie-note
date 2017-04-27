@@ -191,14 +191,13 @@ class App extends Component {
       watchList: newState
     })
 
-    console.log('Adding data to user')
-    var user = firebase.auth().currentUser;
+    let user = firebase.auth().currentUser;
    
     if (user != null) {
      
       let uid = user.uid;
      
-      console.log(newMovie)
+      
       // adding data to user
       firebase.database()
       .ref('/users/'+uid+'/watchlist/'+this.state.watchList.length)
@@ -213,7 +212,7 @@ class App extends Component {
     let removed = toggleRemove(movie)
     let index = this.state.watchList.indexOf(movie);
     let updatedWatchList = updateRemove(this.state.watchList, removed)
-    console.log(index)
+    
     this.setState({
       watchList: updatedWatchList
     })

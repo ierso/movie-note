@@ -47,7 +47,7 @@ class Movie extends Component {
       movie => {
         this.setState({movie})
       }
-    )
+    ).then(console.log('test'))
   }
 
    componentWillMount(){
@@ -60,9 +60,13 @@ class Movie extends Component {
       }).then(
         movie => {
           this.setState({movie})
-      })
-      
+      }).then()
     }
+
+    // componentDidUpdate(){
+    //   console.log(this.state.movie.release_date)
+    // }
+
     
 
   watchLater = (e) => {
@@ -77,11 +81,26 @@ class Movie extends Component {
   
   }
 
+  changeDate = (date) => {
+    return date.split('-')[0]
+  }
+
+  createGroupedArray = (arr, chunkSize) => {
+    var groups = [], i;
+      for (i = 0; i < arr.length; i += chunkSize) {
+          groups.push(arr.slice(i, i + chunkSize));
+      }
+    return groups;
+  }
+  
 
   render() {
 
+    let date = `${this.state.movie.release_date}`
+    let newDate = this.changeDate(date)
+
     // console.log(JSON.stringify(this.state.movie))
-    var style = {
+    let style = {
       backgroundColor: '#eee',
       // backgroundImage: "url('https://image.tmdb.org/t/p/w1400_and_h450_bestv2/kMzU4PkXcKcDMngCxXji0BbVXsu.jpg')",
       // backgroundSize: 'cover'
@@ -105,9 +124,15 @@ class Movie extends Component {
     this.state.movie.credits.cast.forEach(function (person) {
       cast.push({name:person.name, img: person.profile_path, character: person.character});
     })
-    console.log(cast)
+
+    let castNum = cast.length/2
+    let newCastNum = Math.ceil(castNum)
+
+    let castGroups = this.createGroupedArray(cast, newCastNum);
+    console.log(castGroups[0])
     
-  
+
+       
     return (
       <div className="movie" style={style}>
         <div className="movie-media">
@@ -131,7 +156,7 @@ class Movie extends Component {
             <div className="title">
               <h1>{this.state.movie.original_title}
                 <sup className="year">
-                  {this.state.movie.release_date}
+                  {newDate}
                 </sup>
               </h1>
             </div>
@@ -143,7 +168,6 @@ class Movie extends Component {
             </div>
             <div className="genre">
               <h4><span>Genre:</span></h4>
-              
                 {
                 this.state.movie.genres.map(function(genre, index){
                   return(
@@ -153,7 +177,6 @@ class Movie extends Component {
                     )
                   })
                 }
-              
             </div>
             <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
           </div>
@@ -165,11 +188,19 @@ class Movie extends Component {
               <hr></hr>
                 {directors.map(function(director, index){
                   return(
-                    <div key={index}>
-                      <img className="movie-profile-img" src={
-                        `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
-                        }  alt={director.name}/>
-                      {director.name}
+                    <div className="profile director" key={index}>
+                      <div className="profile-image">
+                        {
+                          (director.img === null)
+                          ? <div className="blank-profile"></div>
+                          : <img className="movie-profile-img" src={
+                          `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
+                          }  alt={director.name}/>
+                        }
+                      </div>
+                      <div className="profile-name">
+                        <p className="name">{director.name}</p>
+                      </div>
                     </div>
                   )
                 })}
@@ -180,11 +211,19 @@ class Movie extends Component {
               <hr></hr>
                 {writers.map(function(writer, index){
                   return(
-                    <div className="writer" key={index}>
-                      <img className="movie-profile-img" src={
-                        `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
-                        }  alt={writer.name}/>
-                      {writer.name}
+                    <div className="profile writer" key={index}>
+                      <div className="profile-image">
+                        {
+                          (writer.img === null)
+                          ? <div className="blank-profile"></div>
+                          : <img className="movie-profile-img" src={
+                          `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
+                          }  alt={writer.name}/>
+                        }
+                      </div>
+                      <div className="profile-name">
+                        <p className="name">{writer.name}</p>
+                      </div>
                     </div>
                   )
                 })}
@@ -193,7 +232,46 @@ class Movie extends Component {
           <div className="cast">
             <h4>Stars:</h4>
             <hr></hr>
+            <div className="cast-groups">
+              <div className="cast-group">
+                {castGroups[0].map(function(star, i){
+                  return(
+                    <div className="actor" key={i}>
+                      <div className="actor-image">
+                        <img src="" alt={star.name}/>
+                      </div>
+                      <div className="actor-info">
+                        <p className="actor-name">{star.name}</p>
+                        <p className="character">as {star.character}</p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              <hr></hr>
+              <div className="cast-group">
+                {
+                  (castGroups[1] != null)
+                  ? castGroups[1].map(function(star, i){
+                      return(
+                        <div className="actor" key={i}>
+                          <div className="actor-image">
+                            <img src="" alt={star.name}/>
+                          </div>
+                          <div className="actor-info">
+                            <p className="actor-name">{star.name}</p>
+                            <p className="character">as {star.character}</p>
+                          </div>
+                        </div>
+                      )
+                    })
+                  : <div></div>
+                } 
+                
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

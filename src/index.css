@@ -97,16 +97,66 @@ img.movie-poster-img{
 }
 .crew{
   border: red solid 1px;
-  flex: 1;
+  flex: 2;
   
 }
 .cast{
   border: red solid 1px;
+  flex: 5;
+}
+
+.profile{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+}
+.profile-image{
+  border: red solid 1px;
+  flex: 1;
+}
+.profile-name{
+  border: red solid 1px;
   flex: 2;
+  color: black;
+  font-weight: 600;
 }
 
 
+.blank-profile{
+  width: 66px;
+  height: 66px;
+  background-color: #dbdbdb;
+  border-radius: 50px;
+  margin: 0 auto;
+}
 
+.cast p{
+  margin: 0px;
+}
+
+.cast-groups{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cast-group{
+ flex: 1;
+}
+
+.actor{
+  display: flex;
+  border: green solid 1px;
+  align-items: center;
+  text-align: center;
+}
+.actor-image{
+  flex: 1;
+}
+.actor-info{
+  text-align: left;
+  flex: 1;
+}
 
 
 .Movie-Search{
