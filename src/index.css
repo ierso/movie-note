@@ -11,25 +11,50 @@ body {
 }
 .sidebar{
   min-width: 300px;
-  border: red solid 3px;
+  background-color: #2b2f3f;
 }
 .movie-note{
   display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  border: blue solid 3px;
-  
+  flex-direction: column;
 }
 .header{ 
   flex-direction: column;
   width: 100%;
-  border: green dashed 2px;
+  
 }
 .main{
   width: 100%;
-  border: pink dashed 2px;
-  margin: 25px;
 }
+
+/*sidebar*/
+.sidebar-title a{
+  display: block;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+
+.movie-note ul{
+  margin: 0px;
+  padding: 0px;
+}
+.movie-note ul li{
+  
+}
+.movie-note ul li a{
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+.movie-note ul li a:hover{
+  background-color: #252937;
+}
+.checkbox{
+  margin-right: 10px;
+}
+
 
 
 /*home*/
@@ -40,7 +65,6 @@ body {
 .recent-movies-title{
   width: 100%;
   flex-direction: column;
-  border: red solid 1px;
 }
 .recent-movies-list{
   width: 100%;
@@ -60,29 +84,49 @@ img.recent-movie-poster{
 }
 
 /*movie landing page*/
+
+
+
+.movie-content{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
 .movie{
-  border: coral dashed 3px;
+  flex-direction: column;
   display: flex;
   justify-content: space-between;
 }
-.movie-media{
-  flex-basis: 350px;
+
+.movie-backdrop{
+  height: 300px;
 }
+
+.movie-media{
+  flex-basis: 350px; 
+}
+.movie-poster{
+  position: relative;
+}
+
 img.movie-poster-img{
-  border: red solid 1px;
   width: 85%;
   border-radius: 5px;
+  top: -250px;
+  position: absolute;
 }
 .movie-content{
   flex: 9;
   display: flex;
   flex-wrap: wrap;
-  border: red solid 2px;
 }
 .movie-info{
   width: 100%;
   flex-direction: column;
-  border: blue solid 3px;
+  
 }
 
 .movie-profile-img{
@@ -91,17 +135,17 @@ img.movie-poster-img{
 
 .credits{
   width: 100%;
-  border: black solid 3px;
   display: flex;
   justify-content: space-between;
 }
 .crew{
-  border: red solid 1px;
+
   flex: 2;
   
 }
 .cast{
-  border: red solid 1px;
+  margin-left: 20px;
+  
   flex: 5;
 }
 
@@ -109,17 +153,24 @@ img.movie-poster-img{
   display: flex;
   align-items: center;
   text-align: center;
-  
 }
 .profile-image{
-  border: red solid 1px;
+  
   flex: 1;
 }
 .profile-name{
-  border: red solid 1px;
   flex: 2;
-  color: black;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.name-title{
   font-weight: 600;
+  color: black;
+  margin: 0px;
+}
+.name-title-sub{
+  margin: 0px;
 }
 
 
@@ -146,17 +197,14 @@ img.movie-poster-img{
 
 .actor{
   display: flex;
-  border: green solid 1px;
   align-items: center;
   text-align: center;
+  margin-bottom: 5px;
 }
 .actor-image{
   flex: 1;
 }
-.actor-info{
-  text-align: left;
-  flex: 1;
-}
+
 
 
 .Movie-Search{
@@ -220,8 +268,7 @@ img.movie-poster-img{
   padding: 20px 100px;
 }
 
-
-
+/*youtube video*/
 
 
 

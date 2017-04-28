@@ -47,7 +47,7 @@ class Movie extends Component {
       movie => {
         this.setState({movie})
       }
-    ).then(console.log('test'))
+    )
   }
 
    componentWillMount(){
@@ -60,7 +60,7 @@ class Movie extends Component {
       }).then(
         movie => {
           this.setState({movie})
-      }).then()
+      })
     }
 
     // componentDidUpdate(){
@@ -100,10 +100,13 @@ class Movie extends Component {
     let newDate = this.changeDate(date)
 
     // console.log(JSON.stringify(this.state.movie))
-    let style = {
+    let imgUrl = `https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${this.state.movie.backdrop_path}`
+    let backdop = {
       backgroundColor: '#eee',
-      // backgroundImage: "url('https://image.tmdb.org/t/p/w1400_and_h450_bestv2/kMzU4PkXcKcDMngCxXji0BbVXsu.jpg')",
-      // backgroundSize: 'cover'
+      backgroundImage: 'url(' + imgUrl + ')',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center top',
+      backgroundRepeat: 'no-repeat'
     }
     
     let directors = [];
@@ -116,9 +119,11 @@ class Movie extends Component {
     let writers = [];
     this.state.movie.credits.crew.forEach(function (person) {
         if (person.department === 'Writing') {
-            writers.push({name:person.name, img: person.profile_path});
+            writers.push({name:person.name, img: person.profile_path, job: person.job});
         }
     })
+
+   
 
     let cast = [];
     this.state.movie.credits.cast.forEach(function (person) {
@@ -127,151 +132,166 @@ class Movie extends Component {
 
     let castNum = cast.length/2
     let newCastNum = Math.ceil(castNum)
-
     let castGroups = this.createGroupedArray(cast, newCastNum);
-    console.log(castGroups[0])
     
-
+   
+    console.log(this.state.movie)
        
     return (
-      <div className="movie" style={style}>
-        <div className="movie-media">
-          <div className="movie-poster">
-            <img className="movie-poster-img" src={'http://image.tmdb.org/t/p/w500'+this.state.movie.poster_path} alt={this.state.movie.original_title}
-            />
-          </div>
-          <div className="videos">
-            Youtube Videos id
-            {/*{this.state.movie.videos.results.map(function(video){
-              return(
-                <div>
-                  {video.key}
-                </div>
-              )
-            })}*/}
-          </div>
+      <div className="movie"> 
+        
+        <div className="movie-backdrop" style={backdop}>
         </div>
         <div className="movie-content">
-          <div className="movie-info">
-            <div className="title">
-              <h1>{this.state.movie.original_title}
-                <sup className="year">
-                  {newDate}
-                </sup>
-              </h1>
-            </div>
-            <div className="plot">
-              <p>{this.state.movie.overview}</p>
-            </div>
-            <div className="runtime">
-              <h4><span>Runtime:</span> {this.state.movie.runtime} minutes</h4>
-            </div>
-            <div className="genre">
-              <h4><span>Genre:</span></h4>
-                {
-                this.state.movie.genres.map(function(genre, index){
-                  return(
-                    <div key={index}>
-                      {genre.name}
-                    </div>
-                    )
-                  })
-                }
-            </div>
-            <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
-          </div>
-        
-        <div className="credits">
-          <div className="crew">
-            <div className="director">
-              <h4>Directors</h4>
-              <hr></hr>
-                {directors.map(function(director, index){
-                  return(
-                    <div className="profile director" key={index}>
-                      <div className="profile-image">
-                        {
-                          (director.img === null)
-                          ? <div className="blank-profile"></div>
-                          : <img className="movie-profile-img" src={
-                          `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
-                          }  alt={director.name}/>
-                        }
-                      </div>
-                      <div className="profile-name">
-                        <p className="name">{director.name}</p>
-                      </div>
-                    </div>
-                  )
-                })}
+          <div className="movie-media">
+            <div className="movie-poster">
+              {
+                (this.state.movie.poster_path === undefined)
+                ? <div className="movie-poster-blank"></div>
+                : <img className="movie-poster-img" 
+                  src={'http://image.tmdb.org/t/p/w500'+this.state.movie.poster_path} alt={this.state.movie.original_title}/>
+              }
               
             </div>
-            <div className="written">
-              <h4>Writters:</h4>
-              <hr></hr>
-                {writers.map(function(writer, index){
-                  return(
-                    <div className="profile writer" key={index}>
-                      <div className="profile-image">
-                        {
-                          (writer.img === null)
-                          ? <div className="blank-profile"></div>
-                          : <img className="movie-profile-img" src={
-                          `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
-                          }  alt={writer.name}/>
-                        }
-                      </div>
-                      <div className="profile-name">
-                        <p className="name">{writer.name}</p>
-                      </div>
-                    </div>
-                  )
-                })}
+            <div className="movie-images">
+              
+              
             </div>
-          </div>   
-          <div className="cast">
-            <h4>Stars:</h4>
-            <hr></hr>
-            <div className="cast-groups">
-              <div className="cast-group">
-                {castGroups[0].map(function(star, i){
-                  return(
-                    <div className="actor" key={i}>
-                      <div className="actor-image">
-                        <img src="" alt={star.name}/>
-                      </div>
-                      <div className="actor-info">
-                        <p className="actor-name">{star.name}</p>
-                        <p className="character">as {star.character}</p>
-                      </div>
-                    </div>
-                  )
-                })}
+          </div>
+          <div className="movie-content">
+            <div className="movie-info">
+              <div className="title">
+                <h1>{this.state.movie.original_title}
+                  <sup className="year">
+                    {newDate}
+                  </sup>
+                </h1>
               </div>
-              <hr></hr>
-              <div className="cast-group">
-                {
-                  (castGroups[1] != null)
-                  ? castGroups[1].map(function(star, i){
-                      return(
-                        <div className="actor" key={i}>
-                          <div className="actor-image">
-                            <img src="" alt={star.name}/>
-                          </div>
-                          <div className="actor-info">
-                            <p className="actor-name">{star.name}</p>
-                            <p className="character">as {star.character}</p>
-                          </div>
-                        </div>
+              <div className="plot">
+                <p>{this.state.movie.overview}</p>
+              </div>
+              <div className="runtime">
+                <h4><span>Runtime:</span> {this.state.movie.runtime} minutes</h4>
+              </div>
+              <div className="genre">
+                <h4><span>Genre:</span></h4>
+                  {
+                  this.state.movie.genres.map(function(genre, index){
+                    return(
+                      <div key={index}>
+                        {genre.name}
+                      </div>
                       )
                     })
-                  : <div></div>
-                } 
+                  }
+              </div>
+              <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
+            </div>
+          
+          <div className="credits">
+            <div className="crew">
+              <div className="director">
+                <h4>Directors</h4>
+                <hr></hr>
+                  {directors.map(function(director, index){
+                    return(
+                      <div className="profile director" key={index}>
+                        <div className="profile-image">
+                          {
+                            (director.img === null)
+                            ? <div className="blank-profile"></div>
+                            : <img className="movie-profile-img" src={
+                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
+                            }  alt={director.name}/>
+                          }
+                        </div>
+                        <div className="profile-name">
+                          <p className="name-title">{director.name}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
                 
+              </div>
+              <div className="written">
+                <h4>Writers:</h4>
+                <hr></hr>
+                  {writers.map(function(writer, index){
+                    return(
+                      <div className="profile writer" key={index}>
+                        <div className="profile-image">
+                          {
+                            (writer.img === null)
+                            ? <div className="blank-profile"></div>
+                            : <img className="movie-profile-img" src={
+                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
+                            }  alt={writer.name}/>
+                          }
+                        </div>
+                        <div className="profile-name">
+                          <p className="writer-name name-title">{writer.name}</p>
+                          <p className="writer-job name-title-sub">{writer.job}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+              </div>
+            </div>   
+            <div className="cast">
+              <h4>Stars</h4>
+              <hr></hr>
+              <div className="cast-groups">
+                <div className="cast-group">
+                  {castGroups[0].map(function(star, i){
+                    return(
+                      <div className="actor" key={i}>
+                        <div className="actor-image">
+                          {
+                            (star.img === null)
+                            ? <div className="blank-profile"></div>
+                            : <img className="movie-profile-img" src={
+                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${star.img}`
+                            }  alt={star.name}/>
+                          }
+                        </div>
+                        <div className="profile-name">
+                          <p className="actor-name name-title">{star.name}</p>
+                          <p className="character name-title-sub">as {star.character}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                
+                <div className="cast-group">
+                  {
+                    (castGroups[1] != null)
+                    ? castGroups[1].map(function(star, i){
+                        return(
+                          <div className="actor" key={i}>
+                            <div className="actor-image">
+                              {
+                                (star.img === null)
+                                ? <div className="blank-profile"></div>
+                                : <img className="movie-profile-img" src={
+                                `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${star.img}`
+                                }  alt={star.name}/>
+                              }
+                            </div>
+                            <div className="profile-name">
+                              <p className="actor-name name-title">{star.name}</p>
+                              <p className="character name-title-sub">as {star.character}</p>
+                            </div>
+                          </div>
+                        )
+                      })
+                    : <div></div>
+                  } 
+                  
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
