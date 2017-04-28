@@ -26,6 +26,12 @@ body {
   width: 100%;
 }
 
+hr{
+  border: 0px;
+  height: 1px;
+  background-color: #efefef;
+}
+
 /*sidebar*/
 .sidebar-title a{
   display: block;
@@ -90,7 +96,7 @@ img.recent-movie-poster{
 .movie-content{
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -223,18 +229,72 @@ img.movie-poster-img{
   z-index: 99999;
 }
 
-.Movie-List img{
+/*movie search list*/
+.top-results{
+  background-color: #efeef1;
+}
+
+.movie-list{
+  display: flex;
+  flex-direction: column;
+  max-height: 520px;
+  overflow-y: scroll;
+}
+.movie-module{
+  background-color: #faf9fa;
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: center;
+  color: #252937;
+  text-decoration: none;
+}
+
+.movie-module:hover{
+  background-color: #252937;
+  color: white;
+}
+
+.module-poster{ 
+  flex: 1;
+  height: 57px;
+  overflow: hidden;
+}
+
+img.module-poster-img{
+  width: 100%;
+  height:100%;
+}
+
+.module-title{
+  margin-left: 20px;
+  flex: 6;
+}
+.module-title h4{
+  margin: 0px;
+  font-size: 13px;
+}
+
+
+.module-poster-img-placeholder{
+  width:100%;
+  height:100%;
+  background-color: #ddd;
+}
+
+
+/*.movie-list img{
   width: 40px;
   float: left;
   margin-left: 30px;
 }
 
-.Movie-List h1{
+.movie-list h1{
   font-size: 16px;
   display: block;
 }
 
-.Movie-List h2{
+.movie-list h2{
   font-size: 13px;
   width: 200px;
   text-align: left;
@@ -242,12 +302,12 @@ img.movie-poster-img{
   float: left;
 }
 
-.Movie-List .movie-module{
+.movie-list .movie-module{
   width: 100%;
   float: left;
   outline: gray solid 1px;
   padding: 10px 0px;
-}
+}*/
 
 
 .button{

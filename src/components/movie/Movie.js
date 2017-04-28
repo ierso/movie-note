@@ -93,14 +93,16 @@ class Movie extends Component {
     return groups;
   }
   
+ 
 
   render() {
+    
 
     let date = `${this.state.movie.release_date}`
     let newDate = this.changeDate(date)
 
     // console.log(JSON.stringify(this.state.movie))
-    let imgUrl = `https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${this.state.movie.backdrop_path}`
+    let imgUrl = `https://image.tmdb.org/t/p/w1400_and_h450_bestv2${this.state.movie.backdrop_path}`
     let backdop = {
       backgroundColor: '#eee',
       backgroundImage: 'url(' + imgUrl + ')',
@@ -108,6 +110,7 @@ class Movie extends Component {
       backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat'
     }
+
     
     let directors = [];
     this.state.movie.credits.crew.forEach(function (person) {
@@ -151,7 +154,6 @@ class Movie extends Component {
                 : <img className="movie-poster-img" 
                   src={'http://image.tmdb.org/t/p/w500'+this.state.movie.poster_path} alt={this.state.movie.original_title}/>
               }
-              
             </div>
             <div className="movie-images">
               
@@ -176,14 +178,25 @@ class Movie extends Component {
               <div className="genre">
                 <h4><span>Genre:</span></h4>
                   {
+                  
                   this.state.movie.genres.map(function(genre, index){
+                  
                     return(
                       <div key={index}>
-                        {genre.name}
+                        
+                        {
+                          (index === 0)
+                            ? <div>test</div>
+                            : <div>testing</div>
+                        }  
+                        
                       </div>
                       )
                     })
                   }
+              </div>
+              <div className="movie-rating">
+                <h4>{this.state.movie.vote_average} <sup>/ 10</sup></h4>
               </div>
               <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
             </div>

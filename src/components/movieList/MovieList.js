@@ -10,7 +10,7 @@ export const MovieList = (props) => {
    
     if(!props.movies){
         return (
-            <div className="Movie-List">
+            <div className="movie-list">
                 <h1>Movies Info</h1>      
                 <div className="movie-module">
                     <img className="movie-poster" src={props.poster} alt='Coming Soon'/>
@@ -22,21 +22,25 @@ export const MovieList = (props) => {
   
     return (
          
-        <div className="Movie-List">
-            <h1 onClick={props.newPage}>Movies Info</h1>
+        <div className="movie-list">
+            <div className="top-results">
+                <p>Top Results</p>
+            </div>
                 {props.movies.map((movie) =>{
                     return(
-                        <div className="movie-module" key={movie.id}>
-                            <img className="movie-poster" src={
-                                (`http://image.tmdb.org/t/p/w185${movie.poster_path}` === 'N/A')
-                                ? `http://image.tmdb.org/t/p/w185${movie.poster_path}`
-                                : `http://image.tmdb.org/t/p/w185${movie.poster_path}`
-                                } alt={movie.title}/>
-                            <h5>
-                                <Link onClick={props.hideMenu} to={`/movie/${movie.id}`}>
-                                    {movie.title}
-                                </Link>
-                            </h5> 
+                        <div>
+                            <Link onClick={props.hideMenu} to={`/movie/${movie.id}`} className="movie-module" key={movie.id}>
+                            <div className="module-poster">
+                                    {    
+                                    (movie.poster_path === null)
+                                    ? <div className="module-poster-img-placeholder"></div>
+                                    : <img className="module-poster-img" src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={movie.title}/>
+                                    } 
+                            </div>
+                            <div className="module-title">
+                                <h4>{movie.title}</h4>   
+                            </div>
+                            </Link> 
                         </div>
                     )
                 })}

@@ -6,7 +6,7 @@ export const SideBar = (props) => {
     return (
         <div className="movie-note">
           <div className="sidebar-title">
-            <h2><Link className="sidebar-title" activeStyle={{backgroundColor: '#252937'}} to="/">Recent Movies</Link></h2>
+            <h2><Link className="sidebar-title" onlyActiveOnIndex activeStyle={{backgroundColor: '#252937'}} to="/">Recent Movies</Link></h2>
           </div>
           <div className="sidebar-title">
             <h2>Watchlist</h2>

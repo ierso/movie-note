@@ -258,23 +258,7 @@ class App extends Component {
         <div className="movie-note">
         
           <div className="header">
-            <LoginButtons 
-              loggedIn={this.state.login} 
-              openModalLogin={this.openModalLogin}
-              openModalRegister={this.openModalRegister}
-              handleLogOut={this.handleLogOut}
-            />
-              
-            <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
-              
-              { this.state.login ? <Login closeModal={this.closeModal}/> : null }
-              { this.state.register ? <Register closeModal={this.closeModal}/> : null }
-              
-              <p><button onClick={this.closeModal}>Close</button></p>
-            </Modal>
-              
-            <h1 onClick={this.newPage}>Movie-Note</h1>
-              
+            
             <div className="Movie-Search">
               <MovieSearch 
               updateSearch={this.updateSearch}
@@ -289,6 +273,24 @@ class App extends Component {
                   poster={this.state.poster}/>
               </div>
             </div>
+            <div className="login-user">
+              <LoginButtons 
+                loggedIn={this.state.login} 
+                openModalLogin={this.openModalLogin}
+                openModalRegister={this.openModalRegister}
+                handleLogOut={this.handleLogOut}
+              />
+            </div>
+              
+            <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
+              
+              { this.state.login ? <Login closeModal={this.closeModal}/> : null }
+              { this.state.register ? <Register closeModal={this.closeModal}/> : null }
+              
+              <p><button onClick={this.closeModal}>Close</button></p>
+            </Modal>
+              
+            
           </div> 
               
           <div className="main">
