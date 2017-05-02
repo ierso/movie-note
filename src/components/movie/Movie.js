@@ -102,13 +102,13 @@ class Movie extends Component {
     let newDate = this.changeDate(date)
 
     // console.log(JSON.stringify(this.state.movie))
-    let imgUrl = `https://image.tmdb.org/t/p/w1400_and_h450_bestv2${this.state.movie.backdrop_path}`
+    let imgUrl = `https://image.tmdb.org/t/p/original${this.state.movie.backdrop_path}`
     let backdop = {
       backgroundColor: '#eee',
       backgroundImage: 'url(' + imgUrl + ')',
       backgroundSize: 'cover',
-      backgroundPosition: 'center top',
-      backgroundRepeat: 'no-repeat'
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '50% 50%'
     }
 
     
@@ -137,8 +137,6 @@ class Movie extends Component {
     let newCastNum = Math.ceil(castNum)
     let castGroups = this.createGroupedArray(cast, newCastNum);
     
-   
-    console.log(this.state.movie)
        
     return (
       <div className="movie"> 

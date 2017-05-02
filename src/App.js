@@ -197,21 +197,35 @@ class App extends Component {
      
       let uid = user.uid;
      
-      
+     
+      console.log(newMovie.id)
+      console.log(this.state.watchList)
       // adding data to user
       firebase.database()
-      .ref('/users/'+uid+'/watchlist/'+this.state.watchList.length)
+      .ref('/users/'+uid+'/watchlist/'+newMovie.id)
       .set(newMovie)
       
     }
   }
 
   removeMovie = (id) => {
+
+
+    //i want to get the actual id of the Object
+    //i cant use the id because if i delete 0 to the end it wont work properly 
+
+    // here's my idea - add the object with a unique id rather than use the index
+    // that way when you remove the object you are using the uid instead of index
     
     let movie = findId(id, this.state.watchList)
     let removed = toggleRemove(movie)
     let index = this.state.watchList.indexOf(movie);
     let updatedWatchList = updateRemove(this.state.watchList, removed)
+
+    let movieUID = this.state.watchList[index].id
+    console.log(movieUID)
+
+    
     
     this.setState({
       watchList: updatedWatchList
@@ -231,7 +245,7 @@ class App extends Component {
         // this.setLogInMessage()
         
         firebase.database()
-        .ref('/users/'+firebaseUser.uid+'/watchlist/'+index)
+        .ref('/users/'+firebaseUser.uid+'/watchlist/'+movieUID)
         .remove()
       
       } else {

@@ -109,6 +109,7 @@ img.recent-movie-poster{
 
 .movie-backdrop{
   height: 300px;
+  position: relative;
 }
 
 .movie-media{
