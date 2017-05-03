@@ -57,11 +57,13 @@ class Movie extends Component {
       .then(res => res.json())
       .then((data)=>{
         return data
-      }).then(
+      })
+      .then(
         movie => {
           this.setState({movie})
       })
     }
+
 
     // componentDidUpdate(){
     //   console.log(this.state.movie.release_date)
@@ -108,7 +110,7 @@ class Movie extends Component {
       backgroundImage: 'url(' + imgUrl + ')',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
-      backgroundPosition: '50% 50%'
+      backgroundPosition: 'center 15%'
     }
 
     
@@ -126,8 +128,6 @@ class Movie extends Component {
         }
     })
 
-   
-
     let cast = [];
     this.state.movie.credits.cast.forEach(function (person) {
       cast.push({name:person.name, img: person.profile_path, character: person.character});
@@ -136,6 +136,13 @@ class Movie extends Component {
     let castNum = cast.length/2
     let newCastNum = Math.ceil(castNum)
     let castGroups = this.createGroupedArray(cast, newCastNum);
+
+    
+    let genres = this.state.movie.genres
+    let genresNum = genres.length
+    console.log(genresNum)
+    
+    
     
        
     return (
@@ -160,7 +167,7 @@ class Movie extends Component {
           </div>
           <div className="movie-content">
             <div className="movie-info">
-              <div className="title">
+              <div className="movie-title">
                 <h1>{this.state.movie.original_title}
                   <sup className="year">
                     {newDate}
@@ -176,19 +183,15 @@ class Movie extends Component {
               <div className="genre">
                 <h4><span>Genre:</span></h4>
                   {
-                  
-                  this.state.movie.genres.map(function(genre, index){
-                  
-                    return(
-                      <div key={index}>
-                        
-                        {
-                          (index === 0)
-                            ? <div>test</div>
-                            : <div>testing</div>
-                        }  
-                        
-                      </div>
+                    this.state.movie.genres.map(function(genre, index){
+                      return(
+                        <div key={index} className="genre-type">
+                           {
+                              genresNum - 1 === index ? genre.name
+                            : genresNum - 2 === index ? genre.name + ' &'
+                            : ` ${genre.name}, `
+                          }
+                        </div>
                       )
                     })
                   }
@@ -202,7 +205,7 @@ class Movie extends Component {
           <div className="credits">
             <div className="crew">
               <div className="director">
-                <h4>Directors</h4>
+                <h4 className="info-title">Directors</h4>
                 <hr></hr>
                   {directors.map(function(director, index){
                     return(
@@ -225,7 +228,7 @@ class Movie extends Component {
                 
               </div>
               <div className="written">
-                <h4>Writers:</h4>
+                <h4 className="info-title">Writers:</h4>
                 <hr></hr>
                   {writers.map(function(writer, index){
                     return(
@@ -249,7 +252,7 @@ class Movie extends Component {
               </div>
             </div>   
             <div className="cast">
-              <h4>Stars</h4>
+              <h4 className="info-title">Stars</h4>
               <hr></hr>
               <div className="cast-groups">
                 <div className="cast-group">

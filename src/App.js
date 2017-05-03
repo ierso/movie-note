@@ -26,6 +26,8 @@ import {findId, toggleRemove, removeMovie, updateRemove} from './lib/watchListHe
 
 
 
+import {ModulePoster} from './components/movieList/ModulePoster'
+
 // import {addMovie} from './lib/watchListHelpers'
 
 
@@ -262,6 +264,7 @@ class App extends Component {
 
     return (
       <div className="app">
+        <ModulePoster />
 
         <div className="sidebar">
           <Link to="/">GO HOME</Link>     

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+
+h1,h2,h3,h4,h5,h6,p,li,a{
+  font-family: 'Lato', sans-serif;
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -126,6 +133,7 @@ img.movie-poster-img{
   position: absolute;
 }
 .movie-content{
+  margin-top: 30px;
   flex: 9;
   display: flex;
   flex-wrap: wrap;
@@ -160,6 +168,7 @@ img.movie-poster-img{
   display: flex;
   align-items: center;
   text-align: center;
+  margin-bottom: 5px;
 }
 .profile-image{
   
@@ -213,6 +222,38 @@ img.movie-poster-img{
 }
 
 
+h4.info-title{
+  text-transform: uppercase;
+  color: #7b828b;
+}
+
+.genre h4{
+  display: inline-block;
+}
+.genre-type{
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.movie-title h1{
+  font-size: 36px;
+  position: relative;
+  font-weight: 900;
+  margin: 0px;
+}
+.movie-title .year{
+  font-weight: 400;
+  color: #7b828b;
+  font-size: 16px;
+  position: relative;
+  left: 5px;
+  top: -5px;
+}
+
+.plot p{
+  font-size: 18px;
+   color: #7b828b;
+}
 
 .Movie-Search{
   margin-bottom: 30px;

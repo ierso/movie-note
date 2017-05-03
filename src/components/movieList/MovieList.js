@@ -1,5 +1,7 @@
 import  React from 'react';
 import { Link } from 'react-router';
+import {ModulePoster} from './ModulePoster'
+import {ModuleTitle} from './ModuleTitle'
 
 export const MovieList = (props) => {
 
@@ -7,7 +9,6 @@ export const MovieList = (props) => {
         return null
     }
 
-   
     if(!props.movies){
         return (
             <div className="movie-list">
@@ -20,8 +21,7 @@ export const MovieList = (props) => {
         )
     }
   
-    return (
-         
+    return (    
         <div className="movie-list">
             <div className="top-results">
                 <p>Top Results</p>
@@ -29,17 +29,19 @@ export const MovieList = (props) => {
                 {props.movies.map((movie) =>{
                     return(
                         <div>
-                            <Link onClick={props.hideMenu} to={`/movie/${movie.id}`} className="movie-module" key={movie.id}>
-                            <div className="module-poster">
-                                    {    
-                                    (movie.poster_path === null)
-                                    ? <div className="module-poster-img-placeholder"></div>
-                                    : <img className="module-poster-img" src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} alt={movie.title}/>
-                                    } 
-                            </div>
-                            <div className="module-title">
-                                <h4>{movie.title}</h4>   
-                            </div>
+                            <Link onClick={props.hideMenu} 
+                                to={`/movie/${movie.id}`} 
+                                className="movie-module" 
+                                key={movie.id}>
+                            
+                                <ModulePoster 
+                                moviePoster={movie.poster_path}
+                                movieTitle={movie.title}
+                                />
+                                
+                                <ModuleTitle 
+                                movieTitle={movie.title}
+                                />
                             </Link> 
                         </div>
                     )
