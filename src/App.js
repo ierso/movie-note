@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {fire} from './fire';
 import firebase from 'firebase';
 
-import { Link } from 'react-router';
-
 import './App.css';
 
 //Modal
@@ -25,8 +23,6 @@ import {loadMovies} from './lib/movieService'
 import {findId, toggleRemove, removeMovie, updateRemove} from './lib/watchListHelpers'
 
 
-
-import {ModulePoster} from './components/movieList/ModulePoster'
 
 // import {addMovie} from './lib/watchListHelpers'
 
@@ -264,12 +260,9 @@ class App extends Component {
 
     return (
       <div className="app">
-        <ModulePoster />
 
-        <div className="sidebar">
-          <Link to="/">GO HOME</Link>     
+        <div className="sidebar"> 
           <SideBar removeMovie={this.removeMovie} watchList={this.state.watchList}/>
-   
         </div>
 
         <div className="movie-note">

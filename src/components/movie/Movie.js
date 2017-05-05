@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {addMovie} from '../../lib/watchListHelpers'
+
+import {MoviePoster} from './MoviePoster'
+import {Rating} from './Rating'
+import {Recommendations} from './Recommendations'
+
 // import {loadMovies} from '../../lib/movieService'
 
 // import firebase from 'firebase';
 
 class Movie extends Component {
-  
+
   constructor(props){
     super();
     this.state = {
@@ -25,6 +30,9 @@ class Movie extends Component {
           "backdrops": [{}],
           "posters": [{}]
         },
+        "recommendations":{
+          "results": [{}]
+        },
         "videos": {
           "results": [{}]
         }
@@ -35,11 +43,11 @@ class Movie extends Component {
 
   componentWillReceiveProps(nextProps){
     this.fetchMovie(nextProps.params.movieTitle)
-    
+
   }
 
   fetchMovie(movieTitle) {
-    fetch(`https://api.themoviedb.org/3/movie/${movieTitle}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query&append_to_response=credits,releases,images,videos`)
+    fetch(`https://api.themoviedb.org/3/movie/${movieTitle}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query&append_to_response=credits,releases,images,videos,recommendations`)
     .then(res => res.json())
     .then((data)=>{
       return data
@@ -53,7 +61,7 @@ class Movie extends Component {
    componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
 
-      fetch(`https://api.themoviedb.org/3/movie/${this.props.params.movieTitle}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query&append_to_response=credits,releases,images`)
+      fetch(`https://api.themoviedb.org/3/movie/${this.props.params.movieTitle}?api_key=c2d6b648cfb303b5ae02208a5c91d208&query&append_to_response=credits,releases,images,recommendations`)
       .then(res => res.json())
       .then((data)=>{
         return data
@@ -65,22 +73,16 @@ class Movie extends Component {
     }
 
 
-    // componentDidUpdate(){
-    //   console.log(this.state.movie.release_date)
-    // }
-
-    
-
   watchLater = (e) => {
     e.preventDefault()
-    
+
     // const watchList = this.props.watchList;
     const newMovie = {id: this.state.movie.id, title: this.state.movie.title, remove: false};
-    
+
     const updatedWatchList = addMovie(this.props.watchList, newMovie)
-    
+
     this.props.addToWatchList(updatedWatchList);
-  
+
   }
 
   changeDate = (date) => {
@@ -94,11 +96,8 @@ class Movie extends Component {
       }
     return groups;
   }
-  
- 
 
   render() {
-    
 
     let date = `${this.state.movie.release_date}`
     let newDate = this.changeDate(date)
@@ -110,10 +109,11 @@ class Movie extends Component {
       backgroundImage: 'url(' + imgUrl + ')',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center 15%'
+      backgroundPosition: 'center 15%',
+      filter: 'brightness(120%) grayscale(40%)'
     }
 
-    
+
     let directors = [];
     this.state.movie.credits.crew.forEach(function (person) {
         if (person.job === 'Director') {
@@ -128,45 +128,34 @@ class Movie extends Component {
         }
     })
 
-    let cast = [];
-    this.state.movie.credits.cast.forEach(function (person) {
-      cast.push({name:person.name, img: person.profile_path, character: person.character});
-    })
+    // let cast = [];
+    // this.state.movie.credits.cast.forEach(function (person) {
+    //   cast.push({name:person.name, img: person.profile_path, character: person.character});
+    // })
 
-    let castNum = cast.length/2
-    let newCastNum = Math.ceil(castNum)
-    let castGroups = this.createGroupedArray(cast, newCastNum);
+    // let castNum = cast.length/2
+    // let newCastNum = Math.ceil(castNum)
+    // let castGroups = this.createGroupedArray(cast, newCastNum);
 
-    
+
     let genres = this.state.movie.genres
-    let genresNum = genres.length
-    console.log(genresNum)
-    
-    
-    
-       
+
+    console.log(this.state.movie)
+
     return (
-      <div className="movie"> 
-        
-        <div className="movie-backdrop" style={backdop}>
-        </div>
-        <div className="movie-content">
-          <div className="movie-media">
-            <div className="movie-poster">
-              {
-                (this.state.movie.poster_path === undefined)
-                ? <div className="movie-poster-blank"></div>
-                : <img className="movie-poster-img" 
-                  src={'http://image.tmdb.org/t/p/w500'+this.state.movie.poster_path} alt={this.state.movie.original_title}/>
-              }
-            </div>
-            <div className="movie-images">
-              
-              
-            </div>
-          </div>
-          <div className="movie-content">
-            <div className="movie-info">
+      <div className="movie">
+
+        <div className="movie-header">
+          <div className="movie-header-backdrop" style={backdop}></div>
+          <div className="movie-header-content">
+
+            <MoviePoster
+            poster={this.state.movie.poster_path}
+            posterTitle={this.state.movie.original_title}
+            />
+
+            <div className="movie-header-info">
+
               <div className="movie-title">
                 <h1>{this.state.movie.original_title}
                   <sup className="year">
@@ -174,36 +163,61 @@ class Movie extends Component {
                   </sup>
                 </h1>
               </div>
-              <div className="plot">
-                <p>{this.state.movie.overview}</p>
-              </div>
-              <div className="runtime">
-                <h4><span>Runtime:</span> {this.state.movie.runtime} minutes</h4>
-              </div>
-              <div className="genre">
-                <h4><span>Genre:</span></h4>
+
+              <div className="movie-attributes">
+
+                <Rating
+                rating={this.state.movie.releases.countries}
+                />
+
+                <div className="runtime">
+                  <h4>{this.state.movie.runtime} min</h4>
+                </div>
+
+
+                <div className="genre">
                   {
                     this.state.movie.genres.map(function(genre, index){
-                      return(
-                        <div key={index} className="genre-type">
-                           {
-                              genresNum - 1 === index ? genre.name
-                            : genresNum - 2 === index ? genre.name + ' &'
-                            : ` ${genre.name}, `
-                          }
-                        </div>
-                      )
+                        if(genres.length -1 === index){
+                          return(
+                            <div key={index} className="genre-title">{genre.name}</div>
+                          )
+                        }else if(genres.length -2 === index){
+                          return(
+                            <div key={index} className="genre-title">{genre.name + ' &'}</div>
+                          )
+                        }else{
+                          return(
+                            <div key={index} className="genre-title">{genre.name},</div>
+                          )
+                        }
                     })
                   }
+                </div>
+
+              </div>
+              <div className="plot">
+                <p>{this.state.movie.overview}</p>
               </div>
               <div className="movie-rating">
                 <h4>{this.state.movie.vote_average} <sup>/ 10</sup></h4>
               </div>
               <button onClick={this.watchLater} className="button">+ Add to Watchlist</button>
             </div>
-          
-          <div className="credits">
-            <div className="crew">
+          </div>
+        </div>
+
+        <div className="movie-sub-content">
+          <div className="movie-sub-media">
+            
+            <Recommendations
+            recommendations={this.state.movie.recommendations.results}
+            />
+            
+          </div>
+          <div className="movie-sub-credits">
+            <div className="cast-group">
+
               <div className="director">
                 <h4 className="info-title">Directors</h4>
                 <hr></hr>
@@ -215,7 +229,7 @@ class Movie extends Component {
                             (director.img === null)
                             ? <div className="blank-profile"></div>
                             : <img className="movie-profile-img" src={
-                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${director.img}`
+                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2${director.img}`
                             }  alt={director.name}/>
                           }
                         </div>
@@ -225,9 +239,7 @@ class Movie extends Component {
                       </div>
                     )
                   })}
-                
-              </div>
-              <div className="written">
+              </div><div className="written">
                 <h4 className="info-title">Writers:</h4>
                 <hr></hr>
                   {writers.map(function(writer, index){
@@ -238,7 +250,7 @@ class Movie extends Component {
                             (writer.img === null)
                             ? <div className="blank-profile"></div>
                             : <img className="movie-profile-img" src={
-                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${writer.img}`
+                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2${writer.img}`
                             }  alt={writer.name}/>
                           }
                         </div>
@@ -250,13 +262,15 @@ class Movie extends Component {
                     )
                   })}
               </div>
-            </div>   
-            <div className="cast">
-              <h4 className="info-title">Stars</h4>
-              <hr></hr>
-              <div className="cast-groups">
-                <div className="cast-group">
-                  {castGroups[0].map(function(star, i){
+               
+              
+            </div>
+            
+            <div className="cast-group">
+                <h4 className="info-title">Actors:</h4>
+                <hr></hr>
+                {this.state.movie.credits.cast.map(function(star, i){
+                  if (i <= 6){
                     return(
                       <div className="actor" key={i}>
                         <div className="actor-image">
@@ -264,7 +278,7 @@ class Movie extends Component {
                             (star.img === null)
                             ? <div className="blank-profile"></div>
                             : <img className="movie-profile-img" src={
-                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${star.img}`
+                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${star.profile_path}`
                             }  alt={star.name}/>
                           }
                         </div>
@@ -274,41 +288,16 @@ class Movie extends Component {
                         </div>
                       </div>
                     )
-                  })}
-                </div>
-                
-                <div className="cast-group">
-                  {
-                    (castGroups[1] != null)
-                    ? castGroups[1].map(function(star, i){
-                        return(
-                          <div className="actor" key={i}>
-                            <div className="actor-image">
-                              {
-                                (star.img === null)
-                                ? <div className="blank-profile"></div>
-                                : <img className="movie-profile-img" src={
-                                `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${star.img}`
-                                }  alt={star.name}/>
-                              }
-                            </div>
-                            <div className="profile-name">
-                              <p className="actor-name name-title">{star.name}</p>
-                              <p className="character name-title-sub">as {star.character}</p>
-                            </div>
-                          </div>
-                        )
-                      })
-                    : <div></div>
-                  } 
-                  
-                </div>
+                  }else{
+                    return false
+                  }
+                })}
               </div>
-            </div>
           </div>
+
         </div>
+
       </div>
-    </div>
     );
   }
 }

@@ -8,6 +8,7 @@ export const MovieSearch = (props) => {
                 <input type="text" 
                 onChange={props.updateSearch}
                 value={props.searchValue}
+                placeholder="Search movies..."
                 />
             </form>
         </div>

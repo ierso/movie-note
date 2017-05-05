@@ -18,16 +18,16 @@ body {
 }
 .sidebar{
   min-width: 300px;
-  background-color: #2b2f3f;
+  background-color: #2a2c3c;
 }
 .movie-note{
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 .header{ 
-  flex-direction: column;
   width: 100%;
-  
+  display: flex;
 }
 .main{
   width: 100%;
@@ -40,11 +40,23 @@ hr{
 }
 
 /*sidebar*/
+.user{
+  display: flex;
+  background-color: #212330;
+  color: white;
+  padding: 20px;
+}
+
 .sidebar-title a{
   display: block;
   padding: 20px;
   color: white;
   text-decoration: none;
+  font-weight: 400;
+}
+
+.sidebar-title h2{
+  margin: 0px;
 }
 
 
@@ -56,7 +68,7 @@ hr{
   
 }
 .movie-note ul li a{
-  padding: 10px;
+  padding: 10px 20px;
   display: block;
   text-decoration: none;
   color: white;
@@ -94,10 +106,120 @@ hr{
 img.recent-movie-poster{
   width: 90%;
   border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /*movie landing page*/
 
+
+
+
+
+.movie{
+  flex-direction: column;
+  display: flex;
+  /*justify-content: space-between;*/
+}
+.movie-header{
+  display: flex;
+  position: relative;
+}
+.movie-header-backdrop:before{
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  background: rgba(56,58,78,.95);
+}
+.movie-header-backdrop{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -2;
+}
+
+.movie-header-content{
+  border: #eee solid 1px;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0px;
+  display: flex;
+}
+
+.movie-header-content h4{
+  margin: 0px 0px 5px 0px;
+}
+
+.movie-poster{
+  flex-basis: 300px;
+  
+}
+img.movie-poster-img{
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movie-header-info{
+  flex: 1;
+  padding-left: 40px;
+  color: white;
+}
+
+
+.movie-sub-content{
+  border:red solid 1px;
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-attributes{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.movie-rating h4{
+  font-size: 38px;
+}
+.movie-rating h4 sup{
+  font-size: 14px;
+}
+
+.rating{
+ margin-right: 15px;
+}
+.cert{
+  border: white solid 2px;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-size: 10px;
+  font-family: 'Lato', sans-serif;
+}
+.runtime{
+ margin-right: 15px;
+ text-transform: uppercase;
+}
+.genre{
+  text-transform: uppercase;
+}
+.genre-title{
+  display: inline-block;
+  margin-left: 5px;
+  color: #ff9104;
+  font-family: 'Lato', sans-serif;
+}
+
+.runtime h4{
+  font-weight: 400;
+  margin: 0px;
+  padding: 0px;
+}
 
 
 .movie-content{
@@ -107,12 +229,11 @@ img.recent-movie-poster{
   margin: 0 auto;
 }
 
-
-.movie{
-  flex-direction: column;
+.movie-sub-credits{
   display: flex;
-  justify-content: space-between;
+  
 }
+
 
 .movie-backdrop{
   height: 300px;
@@ -126,12 +247,7 @@ img.recent-movie-poster{
   position: relative;
 }
 
-img.movie-poster-img{
-  width: 85%;
-  border-radius: 5px;
-  top: -250px;
-  position: absolute;
-}
+
 .movie-content{
   margin-top: 30px;
   flex: 9;
@@ -202,13 +318,12 @@ img.movie-poster-img{
   margin: 0px;
 }
 
-.cast-groups{
-  display: flex;
-  justify-content: space-between;
-}
+
 
 .cast-group{
- flex: 1;
+  flex: 1;
+  margin-left: 20px;
+  width: 260px;
 }
 
 .actor{
@@ -221,6 +336,24 @@ img.movie-poster-img{
   flex: 1;
 }
 
+.recommendations{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.movie-rec{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-sub-media{
+  display: flex;
+}
+
+.movie-rec-img{
+  width: 100%;
+}
 
 h4.info-title{
   text-transform: uppercase;
@@ -243,7 +376,6 @@ h4.info-title{
 }
 .movie-title .year{
   font-weight: 400;
-  color: #7b828b;
   font-size: 16px;
   position: relative;
   left: 5px;
@@ -252,15 +384,13 @@ h4.info-title{
 
 .plot p{
   font-size: 18px;
-   color: #7b828b;
 }
 
 .Movie-Search{
-  margin-bottom: 30px;
   position: relative;
   width: 300px;
-  margin: 0 auto;
 }
+
 .Movie-Search form input{
   width: 297px;
 }
@@ -359,6 +489,9 @@ img.module-poster-img{
   border: solid 1px #cc7b19;
   padding: 5px 15px;
   border-radius: 3px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
 }
 
 .button:hover{
