@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {loadRecentMovies} from '../../lib/movieService'
 import { Link } from 'react-router';
 
+import './index.css'
+
 
 class Home extends Component {
   

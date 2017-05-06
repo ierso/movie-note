@@ -1,6 +1,8 @@
 import  React from 'react'
 import { Link } from 'react-router';
 
+import './css/index.css';
+
 export const SideBar = (props) => {
     
     return (

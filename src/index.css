@@ -20,11 +20,7 @@ body {
   min-width: 300px;
   background-color: #2a2c3c;
 }
-.movie-note{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
+
 .header{ 
   width: 100%;
   display: flex;
@@ -39,81 +35,8 @@ hr{
   background-color: #efefef;
 }
 
-/*sidebar*/
-.user{
-  display: flex;
-  background-color: #212330;
-  color: white;
-  padding: 20px;
-}
-
-.sidebar-title a{
-  display: block;
-  padding: 20px;
-  color: white;
-  text-decoration: none;
-  font-weight: 400;
-}
-
-.sidebar-title h2{
-  margin: 0px;
-}
-
-
-.movie-note ul{
-  margin: 0px;
-  padding: 0px;
-}
-.movie-note ul li{
-  
-}
-.movie-note ul li a{
-  padding: 10px 20px;
-  display: block;
-  text-decoration: none;
-  color: white;
-}
-.movie-note ul li a:hover{
-  background-color: #252937;
-}
-.checkbox{
-  margin-right: 10px;
-}
-
-
-
-/*home*/
-.recent-movies{
-  display: flex;
-  flex-wrap: wrap;
-}
-.recent-movies-title{
-  width: 100%;
-  flex-direction: column;
-}
-.recent-movies-list{
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  border: red solid 1px;
-  justify-content: center;
-}
-.recent-movie{
-  flex-basis: 200px;
-  text-align: center;
-  margin: 10px 10px 0px 10px;
-}
-img.recent-movie-poster{
-  width: 90%;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
 
 /*movie landing page*/
-
-
-
-
 
 .movie{
   flex-direction: column;
@@ -152,15 +75,7 @@ img.recent-movie-poster{
   margin: 0px 0px 5px 0px;
 }
 
-.movie-poster{
-  flex-basis: 300px;
-  
-}
-img.movie-poster-img{
-  width: 100%;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
+
 
 .movie-header-info{
   flex: 1;
@@ -190,17 +105,8 @@ img.movie-poster-img{
   font-size: 14px;
 }
 
-.rating{
- margin-right: 15px;
-}
-.cert{
-  border: white solid 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 3px 10px;
-  font-size: 10px;
-  font-family: 'Lato', sans-serif;
-}
+
+
 .runtime{
  margin-right: 15px;
  text-transform: uppercase;
@@ -336,24 +242,6 @@ img.movie-poster-img{
   flex: 1;
 }
 
-.recommendations{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.movie-rec{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.movie-sub-media{
-  display: flex;
-}
-
-.movie-rec-img{
-  width: 100%;
-}
 
 h4.info-title{
   text-transform: uppercase;
@@ -401,85 +289,8 @@ h4.info-title{
   z-index: 99999;
 }
 
-/*movie search list*/
-.top-results{
-  background-color: #efeef1;
-}
-
-.movie-list{
-  display: flex;
-  flex-direction: column;
-  max-height: 520px;
-  overflow-y: scroll;
-}
-.movie-module{
-  background-color: #faf9fa;
-  display: flex;
-  padding: 5px 10px;
-  align-items: center;
-  justify-content: center;
-  color: #252937;
-  text-decoration: none;
-}
-
-.movie-module:hover{
-  background-color: #252937;
-  color: white;
-}
-
-.module-poster{ 
-  flex: 1;
-  height: 57px;
-  overflow: hidden;
-}
-
-img.module-poster-img{
-  width: 100%;
-  height:100%;
-}
-
-.module-title{
-  margin-left: 20px;
-  flex: 6;
-}
-.module-title h4{
-  margin: 0px;
-  font-size: 13px;
-}
 
 
-.module-poster-img-placeholder{
-  width:100%;
-  height:100%;
-  background-color: #ddd;
-}
-
-
-/*.movie-list img{
-  width: 40px;
-  float: left;
-  margin-left: 30px;
-}
-
-.movie-list h1{
-  font-size: 16px;
-  display: block;
-}
-
-.movie-list h2{
-  font-size: 13px;
-  width: 200px;
-  text-align: left;
-  margin-left: 20px;
-  float: left;
-}
-
-.movie-list .movie-module{
-  width: 100%;
-  float: left;
-  outline: gray solid 1px;
-  padding: 10px 0px;
-}*/
 
 
 .button{
@@ -503,7 +314,6 @@ img.module-poster-img{
   padding: 20px 100px;
 }
 
-/*youtube video*/
 
 
 

@@ -4,6 +4,10 @@ import {addMovie} from '../../lib/watchListHelpers'
 import {MoviePoster} from './MoviePoster'
 import {Rating} from './Rating'
 import {Recommendations} from './Recommendations'
+import {Directors} from './Directors'
+import {Genre} from './Genre'
+
+import './css/index.css'
 
 // import {loadMovies} from '../../lib/movieService'
 
@@ -97,6 +101,7 @@ class Movie extends Component {
     return groups;
   }
 
+
   render() {
 
     let date = `${this.state.movie.release_date}`
@@ -114,12 +119,6 @@ class Movie extends Component {
     }
 
 
-    let directors = [];
-    this.state.movie.credits.crew.forEach(function (person) {
-        if (person.job === 'Director') {
-            directors.push({name:person.name, img: person.profile_path});
-        }
-    })
 
     let writers = [];
     this.state.movie.credits.crew.forEach(function (person) {
@@ -174,26 +173,9 @@ class Movie extends Component {
                   <h4>{this.state.movie.runtime} min</h4>
                 </div>
 
-
-                <div className="genre">
-                  {
-                    this.state.movie.genres.map(function(genre, index){
-                        if(genres.length -1 === index){
-                          return(
-                            <div key={index} className="genre-title">{genre.name}</div>
-                          )
-                        }else if(genres.length -2 === index){
-                          return(
-                            <div key={index} className="genre-title">{genre.name + ' &'}</div>
-                          )
-                        }else{
-                          return(
-                            <div key={index} className="genre-title">{genre.name},</div>
-                          )
-                        }
-                    })
-                  }
-                </div>
+                <Genre 
+                genres={this.state.movie.genres}/>
+                
 
               </div>
               <div className="plot">
@@ -217,29 +199,14 @@ class Movie extends Component {
           </div>
           <div className="movie-sub-credits">
             <div className="cast-group">
+              
+              
+              <Directors
+              directors={this.state.movie.credits.crew}
+              />
 
-              <div className="director">
-                <h4 className="info-title">Directors</h4>
-                <hr></hr>
-                  {directors.map(function(director, index){
-                    return(
-                      <div className="profile director" key={index}>
-                        <div className="profile-image">
-                          {
-                            (director.img === null)
-                            ? <div className="blank-profile"></div>
-                            : <img className="movie-profile-img" src={
-                            `https://image.tmdb.org/t/p/w66_and_h66_bestv2${director.img}`
-                            }  alt={director.name}/>
-                          }
-                        </div>
-                        <div className="profile-name">
-                          <p className="name-title">{director.name}</p>
-                        </div>
-                      </div>
-                    )
-                  })}
-              </div><div className="written">
+
+              <div className="written">
                 <h4 className="info-title">Writers:</h4>
                 <hr></hr>
                   {writers.map(function(writer, index){
@@ -267,7 +234,7 @@ class Movie extends Component {
             </div>
             
             <div className="cast-group">
-                <h4 className="info-title">Actors:</h4>
+                <h4 className="info-title">Actors</h4>
                 <hr></hr>
                 {this.state.movie.credits.cast.map(function(star, i){
                   if (i <= 6){

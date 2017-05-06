@@ -1,0 +1,14 @@
+.module-poster{ 
+  flex: 1;
+  height: 57px;
+  overflow: hidden;
+}
+img.module-poster-img{
+  width: 100%;
+  height:100%;
+}
+.module-poster-img-placeholder{
+  width:100%;
+  height:100%;
+  background-color: #ddd;
+}

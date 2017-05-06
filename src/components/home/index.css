@@ -1,0 +1,25 @@
+/*home*/
+.recent-movies{
+  display: flex;
+  flex-wrap: wrap;
+}
+.recent-movies-title{
+  width: 100%;
+  flex-direction: column;
+}
+.recent-movies-list{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.recent-movie{
+  flex-basis: 200px;
+  text-align: center;
+  margin: 10px 10px 0px 10px;
+}
+img.recent-movie-poster{
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

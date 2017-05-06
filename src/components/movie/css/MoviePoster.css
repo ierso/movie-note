@@ -1,0 +1,9 @@
+/*movie poster*/
+.movie-poster{
+  flex-basis: 300px;
+}
+img.movie-poster-img{
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

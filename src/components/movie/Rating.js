@@ -1,5 +1,7 @@
 import  React from 'react'
 
+import './css/Rating.css'
+
 export const Rating = (props) => {
 
     return (

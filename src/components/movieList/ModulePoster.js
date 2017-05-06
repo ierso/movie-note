@@ -1,5 +1,7 @@
 import  React from 'react'
 
+import './css/ModulePoster.css'
+
 export const ModulePoster = (props) => {
     return (
         <div className="module-poster">

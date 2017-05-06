@@ -1,0 +1,38 @@
+/*sidebar*/
+.movie-note{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.user{
+  display: flex;
+  background-color: #212330;
+  color: white;
+  padding: 20px;
+}
+.sidebar-title a{
+  display: block;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+}
+.sidebar-title h2{
+  margin: 0px;
+}
+.movie-note ul{
+  margin: 0px;
+  padding: 0px;
+}
+.movie-note ul li a{
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+.movie-note ul li a:hover{
+  background-color: #252937;
+}
+.checkbox{
+  margin-right: 10px;
+}

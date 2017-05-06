@@ -1,0 +1,40 @@
+/*movie*/
+.movie{
+  flex-direction: column;
+  display: flex;
+  /*justify-content: space-between;*/
+}
+.movie-header{
+  display: flex;
+  position: relative;
+}
+.movie-header-backdrop:before{
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  background: rgba(56,58,78,.95);
+}
+.movie-header-backdrop{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -2;
+}
+.movie-header-content{
+  border: #eee solid 1px;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0px;
+  display: flex;
+}
+.movie-header-content h4{
+  margin: 0px 0px 5px 0px;
+}
+.movie-header-info{
+  flex: 1;
+  padding-left: 40px;
+  color: white;
+}

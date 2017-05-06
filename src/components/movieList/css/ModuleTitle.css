@@ -1,0 +1,8 @@
+.module-title{
+  margin-left: 20px;
+  flex: 6;
+}
+.module-title h4{
+  margin: 0px;
+  font-size: 13px;
+}

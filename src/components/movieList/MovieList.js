@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import {ModulePoster} from './ModulePoster'
 import {ModuleTitle} from './ModuleTitle'
 
+import './css/index.css'
+
 export const MovieList = (props) => {
 
     if (props.searchValue.length <= 0){

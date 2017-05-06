@@ -1,5 +1,7 @@
 import  React from 'react'
 
+import './css/Recommendations.css'
+
 export const Recommendations = (props) => {
 
     if(props.recommendations){

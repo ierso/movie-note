@@ -1,0 +1,26 @@
+/*movie search list*/
+.top-results{
+  background-color: #efeef1;
+}
+.movie-list{
+  display: flex;
+  flex-direction: column;
+  max-height: 520px;
+  overflow-y: scroll;
+}
+.movie-module{
+  background-color: #faf9fa;
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: center;
+  color: #252937;
+  text-decoration: none;
+}
+.movie-module:hover{
+  background-color: #252937;
+  color: white;
+}
+
+
+

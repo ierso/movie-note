@@ -1,0 +1,10 @@
+/*genre*/
+.genre{
+  text-transform: uppercase;
+}
+.genre-title{
+  display: inline-block;
+  margin-left: 5px;
+  color: #ff9104;
+  font-family: 'Lato', sans-serif;
+}

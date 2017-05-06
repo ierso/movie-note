@@ -1,5 +1,7 @@
 import  React from 'react'
 
+import './css/ModuleTitle.css'
+
 export const ModuleTitle = (props) => {
     
     return (
