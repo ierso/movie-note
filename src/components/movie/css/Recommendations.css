@@ -1,1 +1,50 @@
 /*recommendations*/
+.movie-sub-media{
+    padding: 0px 20px;
+}
+.movie-sub-credits{
+    padding-right:20px;
+}
+.movie-sub-content{
+    padding-bottom: 30px;
+}
+.movie-rec{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.movie-single-rec{
+    flex-basis: 190px;  
+    margin-bottom: 15px;
+}
+.movie-single-rec a{
+    font-weight: 600;
+    color: black;
+    text-decoration: none;
+}
+.movie-rec-poster{
+    overflow:hidden;
+    background-color: black;
+    height: 106px;
+}
+.movie-rec-poster img.movie-rec-img{
+    opacity: 1;
+    transition: opacity 0.25s, transform 0.25s;
+    width: 100%;
+    transform: scale(1);
+    -webkit-backface-visibility: hidden; 
+    -ms-transform: translateZ(0); 
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: -webkit-transform 0.4s ease;
+}
+.movie-rec-poster:hover img.movie-rec-img{
+   opacity: 0.75;
+   transform: scale(1.10);
+}
+.movie-sub-media{
+    flex: 5;
+}
+.movie-sub-credits{
+    flex: 7;
+}

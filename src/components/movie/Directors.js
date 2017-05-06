@@ -25,6 +25,8 @@ export const Directors = (props) => {
                         </div>
                     </div>
                 )
+                }else{
+                    return false
                 }  
             })
         }

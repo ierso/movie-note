@@ -16,9 +16,23 @@
   color: white;
   text-decoration: none;
   font-weight: 400;
+  border-bottom: #212330 solid 1px;
 }
+.sidebar-title a:hover{
+  background-color: #383a4e;
+}
+
 .sidebar-title h2{
   margin: 0px;
+}
+.watchlist-title h2{
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 20px 0px 20px 20px;
+  background-color: #383a4e;
+  margin: 0px;
+  border-bottom: #212330 solid 1px;
 }
 .movie-note ul{
   margin: 0px;

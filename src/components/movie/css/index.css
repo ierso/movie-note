@@ -2,7 +2,6 @@
 .movie{
   flex-direction: column;
   display: flex;
-  /*justify-content: space-between;*/
 }
 .movie-header{
   display: flex;
@@ -24,7 +23,6 @@
   z-index: -2;
 }
 .movie-header-content{
-  border: #eee solid 1px;
   width: 1000px;
   margin: 0 auto;
   padding: 40px 0px;
@@ -37,4 +35,95 @@
   flex: 1;
   padding-left: 40px;
   color: white;
+}
+.movie-sub-content{
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.blank-profile{
+  width: 66px;
+  height: 66px;
+  background-color: #dbdbdb;
+  border-radius: 50px;
+  margin: 0 auto;
+}
+.name-title{
+  font-weight: 600;
+  color: black;
+  margin: 0px;
+}
+.credits{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.crew{
+  flex: 2;
+}
+.cast{
+  margin-left: 20px;
+  flex: 5;
+}
+.profile{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.profile-image{
+  flex: 1;
+}
+.profile-name{
+  flex: 2;
+  text-align: left;
+  margin-left: 20px;
+}
+.name-title-sub{
+  margin: 0px;
+}
+
+.movie-content{
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.movie-sub-credits{
+  display: flex;
+  
+}
+.movie-backdrop{
+  height: 300px;
+  position: relative;
+}
+.movie-media{
+  flex-basis: 350px; 
+}
+.movie-poster{
+  position: relative;
+}
+.movie-content{
+  margin-top: 30px;
+  flex: 9;
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie-info{
+  width: 100%;
+  flex-direction: column;
+  
+}
+.movie-profile-img{
+  border-radius: 40px;
+}
+.cast p{
+  margin: 0px;
+}
+
+.cast-group{
+  flex: 1;
+  margin-left: 20px;
 }

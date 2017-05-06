@@ -20,7 +20,7 @@ import {MovieList} from './components/movieList'
 import {loadMovies} from './lib/movieService'
 
 
-import {findId, toggleRemove, removeMovie, updateRemove} from './lib/watchListHelpers'
+import {findId, toggleRemove, removeMovie, updateRemove, modifyText} from './lib/watchListHelpers'
 
 
 
@@ -43,7 +43,8 @@ class App extends Component {
       poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg',
       isModalOpen: false,
       login: false,
-      register: false
+      register: false,
+      userName: ''
     }
   }
 
@@ -67,6 +68,10 @@ class App extends Component {
 
         // this.setLogInMessage()
         this.loggedIn()
+
+        let username = modifyText(firebaseUser.email, '@')
+        this.setState({userName:username})
+        
         
         let self = this
         let ref = firebase.database().ref().child('/users/'+firebaseUser.uid)
@@ -151,6 +156,9 @@ class App extends Component {
     console.log('logged out');
   }
 
+
+ 
+
   // Modal
 
   openModalLogin = (e) => {
@@ -207,13 +215,6 @@ class App extends Component {
   }
 
   removeMovie = (id) => {
-
-
-    //i want to get the actual id of the Object
-    //i cant use the id because if i delete 0 to the end it wont work properly 
-
-    // here's my idea - add the object with a unique id rather than use the index
-    // that way when you remove the object you are using the uid instead of index
     
     let movie = findId(id, this.state.watchList)
     let removed = toggleRemove(movie)
@@ -221,9 +222,7 @@ class App extends Component {
     let updatedWatchList = updateRemove(this.state.watchList, removed)
 
     let movieUID = this.state.watchList[index].id
-    console.log(movieUID)
 
-    
     
     this.setState({
       watchList: updatedWatchList
@@ -262,7 +261,11 @@ class App extends Component {
       <div className="app">
 
         <div className="sidebar"> 
-          <SideBar removeMovie={this.removeMovie} watchList={this.state.watchList}/>
+          <SideBar 
+          removeMovie={this.removeMovie} 
+          watchList={this.state.watchList}
+          username={this.state.userName}
+          />
         </div>
 
         <div className="movie-note">

@@ -25,3 +25,7 @@ export const updateRemove = (list, updated) => {
         ...list.slice(updatedIndex+1)
     ]
 }
+
+export const modifyText = (word, letter) => {
+    return word.split(letter)[0]
+} 
