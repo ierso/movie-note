@@ -30,9 +30,6 @@ class Home extends Component {
    
     return (
       <div className="recent-movies">
-        <div className="recent-movies-title">
-          <h1>Home / Recent Movies</h1>
-        </div>
         <div className="recent-movies-list">
           {this.state.recentMovies.map((movie) =>{
             return(

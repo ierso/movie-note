@@ -27,26 +27,23 @@ export default class Register extends Component {
 
   render () {
     return (
-      <div className="col-sm-12 auth-form">
+      <div className="auth-form">
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>Email</label>
             <input className="form-control" ref={(email) => this.email = email} placeholder="Email"/>
           </div>
           <div className="form-group">
-            <label>Password</label>
             <input type="password" className="form-control" placeholder="Password" ref={(pw) => this.pw = pw} />
           </div>
           {
             this.state.registerError &&
-            <div className="alert alert-danger" role="alert">
-              <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <div className="modal-warning" role="alert">
               <span className="sr-only">Error:</span>
               &nbsp;{this.state.registerError}
             </div>
           }
-          <button type="submit" className="btn btn-primary">Register</button>
+          <button type="submit" className="button">Register</button>
         </form>
       </div>
     )

@@ -8,7 +8,9 @@
   display: flex;
   background-color: #212330;
   color: white;
-  padding: 20px;
+  padding: 0px 0px 0px 20px;
+  height: 70px;
+  align-items: center;
 }
 .sidebar-title a{
   display: block;

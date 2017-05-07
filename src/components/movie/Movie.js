@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {addMovie, modifyText} from '../../lib/watchListHelpers'
 
+import {MovieTitle} from './MovieTitle'
 import {MoviePoster} from './MoviePoster'
 import {Rating} from './Rating'
 import {Recommendations} from './Recommendations'
@@ -8,6 +9,7 @@ import {Directors} from './Directors'
 import {Writers} from './Writers'
 import {Actors} from './Actors'
 import {Genre} from './Genre'
+import {Runtime} from './Runtime'
 
 import './css/index.css'
 
@@ -132,13 +134,10 @@ class Movie extends Component {
 
             <div className="movie-header-info">
 
-              <div className="movie-title">
-                <h1>{this.state.movie.original_title}
-                  <sup className="year">
-                    {newDate}
-                  </sup>
-                </h1>
-              </div>
+              <MovieTitle 
+              title={this.state.movie.original_title}
+              date={newDate}
+              />
 
               <div className="movie-attributes">
 
@@ -146,9 +145,9 @@ class Movie extends Component {
                 rating={this.state.movie.releases.countries}
                 />
 
-                <div className="runtime">
-                  <h4>{this.state.movie.runtime} min</h4>
-                </div>
+                <Runtime 
+                runtime={this.state.movie.runtime}
+                />
 
                 <Genre 
                 genres={this.state.movie.genres}/>

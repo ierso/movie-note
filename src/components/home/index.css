@@ -3,10 +3,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-.recent-movies-title{
-  width: 100%;
-  flex-direction: column;
-}
 .recent-movies-list{
   width: 100%;
   display: flex;
@@ -26,8 +22,7 @@ img.recent-movie-poster{
   -webkit-transition: -webkit-transform 0.05s;
 	transition: transform 0.05s;
 	-webkit-transform: perspective(1000px) translate3d(0,0,0);
-	transform: perspective(1000px) translate3d(0,0,0);
-	
+	transform: perspective(1000px) translate3d(0,0,0);	
 }
 
 .recent-movie:hover img.recent-movie-poster{

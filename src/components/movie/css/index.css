@@ -83,14 +83,12 @@
 .name-title-sub{
   margin: 0px;
 }
-
 .movie-content{
   display: flex;
   justify-content: space-between;
   width: 95%;
   margin: 0 auto;
 }
-
 .movie-sub-credits{
   display: flex;
   
@@ -101,9 +99,6 @@
 }
 .movie-media{
   flex-basis: 350px; 
-}
-.movie-poster{
-  position: relative;
 }
 .movie-content{
   margin-top: 30px;
@@ -122,8 +117,75 @@
 .cast p{
   margin: 0px;
 }
-
 .cast-group{
   flex: 1;
   margin-left: 20px;
+}
+
+/*mobile*/
+/*header*/
+
+@media screen and (max-width: 1430px){
+  .movie-header-content{
+    width: 100%;
+    padding: 20px 20px;
+  }
+}
+@media screen and (max-width: 1020px){
+  .movie-header-content{
+    flex-direction: column;
+  }  
+}
+@media screen and (max-width: 1020px){
+  .movie-header-info{
+    padding-left: 0px;
+  }  
+}
+
+/*sub content*/
+@media screen and (max-width: 1430px){
+  .movie-sub-content{
+    width: 100%;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 1430px){
+  img.movie-poster-img{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1430px){
+  .movie-rec{
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1430px){
+  .movie-single-rec{
+    flex-basis: 300px;
+    text-align: center;
+    margin: 10px 10px 0px 10px;
+  }
+}
+@media screen and (max-width: 1430px){
+  .movie-rec-poster{
+    height: 165px
+  }
+}
+
+/*cast and crew*/
+@media screen and (max-width: 1430px){
+  .movie-sub-credits{
+    padding-right: 0px;
+    
+  }
+}
+@media screen and (max-width: 996px){
+  .movie-sub-credits{
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 996px){
+  .movie-rec-poster{
+    height: 165px
+  }
 }

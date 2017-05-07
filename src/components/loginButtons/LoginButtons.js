@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 export default class LoginButtons extends Component {
   constructor(props){
     super();
-    // const isLoggedIn = props.isLoggedIn
   }
-  
   
 
   render () {
-    
+    console.log(this.props.loggedIn)
     return (
       <div>
         {!this.props.loggedIn ? (

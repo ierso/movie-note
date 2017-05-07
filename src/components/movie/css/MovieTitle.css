@@ -1,0 +1,14 @@
+/*movie title*/
+.movie-title h1{
+  font-size: 36px;
+  position: relative;
+  font-weight: 900;
+  margin: 0px;
+}
+.movie-title .year{
+  font-weight: 400;
+  font-size: 16px;
+  position: relative;
+  left: 5px;
+  top: -5px;
+}

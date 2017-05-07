@@ -44,6 +44,8 @@ class App extends Component {
       isModalOpen: false,
       login: false,
       register: false,
+      loginModal: false,
+      registerModal: false,
       userName: ''
     }
   }
@@ -71,7 +73,6 @@ class App extends Component {
 
         let username = modifyText(firebaseUser.email, '@')
         this.setState({userName:username})
-        
         
         let self = this
         let ref = firebase.database().ref().child('/users/'+firebaseUser.uid)
@@ -165,8 +166,8 @@ class App extends Component {
     e.preventDefault();
     this.setState({ 
       isModalOpen: true,
-      login: true,
-      register: false
+      loginModal: true,
+      registerModal: false
     })
   }
 
@@ -174,8 +175,8 @@ class App extends Component {
     e.preventDefault();
     this.setState({ 
       isModalOpen: true,
-      register: true,
-      login: false
+      registerModal: true,
+      loginModal: false
     })
   }
 
@@ -292,17 +293,17 @@ class App extends Component {
                 openModalLogin={this.openModalLogin}
                 openModalRegister={this.openModalRegister}
                 handleLogOut={this.handleLogOut}
+          
               />
             </div>
               
             <Modal isOpen={this.state.isModalOpen} onClose={this.closeModal}>
               
-              { this.state.login ? <Login closeModal={this.closeModal}/> : null }
-              { this.state.register ? <Register closeModal={this.closeModal}/> : null }
+              { this.state.loginModal ? <Login closeModal={this.closeModal}/> : null }
+              { this.state.registerModal ? <Register closeModal={this.closeModal}/> : null }
               
-              <p><button onClick={this.closeModal}>Close</button></p>
+              {/*<p><button onClick={this.closeModal}>Close</button></p>*/}
             </Modal>
-              
             
           </div> 
               

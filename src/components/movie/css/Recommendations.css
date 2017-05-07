@@ -32,11 +32,9 @@
     transition: opacity 0.25s, transform 0.25s;
     width: 100%;
     transform: scale(1);
-    -webkit-backface-visibility: hidden; 
-    -ms-transform: translateZ(0); 
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
     transition: -webkit-transform 0.4s ease;
+    -webkit-font-smoothing: antialiased;
+    -webkit-filter: blur(0.000001px);
 }
 .movie-rec-poster:hover img.movie-rec-img{
    opacity: 0.75;

@@ -1,4 +1,13 @@
 /*rating*/
+.movie-rating h4{
+  font-weight: 600;
+  font-size: 32px;
+}
+.movie-rating sup{
+  font-size: 12px;
+  font-weight: 400;
+}
+
 .rating{
  margin-right: 15px;
 }

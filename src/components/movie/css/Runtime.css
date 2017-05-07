@@ -1,0 +1,9 @@
+.runtime{
+ margin-right: 15px;
+ text-transform: uppercase;
+}
+.runtime h4{
+  font-weight: 400;
+  margin: 0px;
+  padding: 0px;
+}
