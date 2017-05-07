@@ -2,6 +2,9 @@
 .top-results{
   background-color: #efeef1;
 }
+.top-results p{
+  padding-left: 10px;
+}
 .movie-list{
   position: absolute;
   z-index: 1;

@@ -293,7 +293,6 @@ class App extends Component {
                 openModalLogin={this.openModalLogin}
                 openModalRegister={this.openModalRegister}
                 handleLogOut={this.handleLogOut}
-          
               />
             </div>
               

@@ -1,7 +1,9 @@
 .module-poster{ 
   flex: 1;
-  height: 57px;
   overflow: hidden;
+  width: 185px;
+  height: inherit;
+  padding-top: 4px;
 }
 img.module-poster-img{
   width: 100%;

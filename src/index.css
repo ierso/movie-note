@@ -20,7 +20,6 @@ body {
   min-width: 300px;
   background-color: #2a2c3c;
 }
-
 .header{ 
   width: 100%;
   display: flex;
@@ -30,7 +29,6 @@ body {
 .main{
   width: 100%;
 }
-
 hr{
   border: 0px;
   height: 1px;
@@ -45,26 +43,10 @@ hr{
   flex-wrap: wrap;
   margin-top: 15px;
 }
-
 h4.info-title{
   text-transform: uppercase;
   color: #7b828b;
 }
-
-
-.plot p{
-  font-size: 18px;
-}
-
-.Movie-Search{
-  position: relative;
-  width: 300px;
-}
-
-.Movie-Search form input{
-  width: 297px;
-}
-
 .movie-watchBtn{
   margin-top: 30px;
 }
@@ -81,17 +63,11 @@ h4.info-title{
   color: white;
   font-weight: 600;
 }
-
 .button:hover{
   background-color: #ff9104;
   border: solid 1px #ff9104;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
-
-.col-sm-12.auth-form{
-  padding: 20px 100px;
-}
-
-
 
 
 /*auth*/
@@ -113,10 +89,10 @@ h4.info-title{
   text-transform: uppercase;
   font-weight: 400;
 }
-.form-group{
+.auth-form .form-group{
   margin: 10px 0px;
 }
-.form-group input{
+.auth-form .form-group input{
   padding: 10px 15px;
   border: #383a4e solid 2px;
   background-color: #2a2c3c;
@@ -127,16 +103,16 @@ h4.info-title{
   width: 100%;
   color: white;
 }
-input::-webkit-input-placeholder {
+.auth-form input::-webkit-input-placeholder {
   color: white;
 }
-input:-moz-placeholder { /* Firefox 18- */
+.auth-form input:-moz-placeholder { /* Firefox 18- */
   color: white;  
 }
-  input::-moz-placeholder {  /* Firefox 19+ */
+.auth-form input::-moz-placeholder {  /* Firefox 19+ */
 color: white;  
 }
-  input:-ms-input-placeholder {  
+.auth-form input:-ms-input-placeholder {  
 color: white;  
 }
 .modal-warning a{

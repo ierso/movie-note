@@ -3,7 +3,7 @@ import  React from 'react'
 export const MovieSearch = (props) => {
 
     return (
-        <div className="Search-Field">
+        <div className="search-field">
             <form>
                 <input type="text" 
                 onChange={props.updateSearch}

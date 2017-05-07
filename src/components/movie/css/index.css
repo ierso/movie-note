@@ -66,6 +66,9 @@
   margin-left: 20px;
   flex: 5;
 }
+.plot p{
+  font-size: 18px;
+}
 .profile{
   display: flex;
   align-items: center;
