@@ -17,6 +17,8 @@ import {MovieSearch} from './components/movieSearch/MovieSearch'
 import {SideBar} from './components/sideBar'
 import {MovieList} from './components/movieList'
 
+import {Menu} from './components/menu/Menu'
+
 import {loadMovies} from './lib/movieService'
 
 
@@ -46,6 +48,7 @@ class App extends Component {
       register: false,
       loginModal: false,
       registerModal: false,
+      sidebar: 'sidebar',
       userName: ''
     }
   }
@@ -158,6 +161,20 @@ class App extends Component {
   }
 
 
+  toggleMenu = (e) => {
+    e.preventDefault();
+    if(this.state.sidebar === 'sidebar'){
+      this.setState({
+        sidebar: 'sidebar show'
+      })
+    }else{
+      this.setState({
+        sidebar: 'sidebar'
+      })
+    }
+    
+    console.log('testing')
+  }
  
 
   // Modal
@@ -261,7 +278,7 @@ class App extends Component {
     return (
       <div className="app">
 
-        <div className="sidebar"> 
+        <div className={this.state.sidebar}> 
           <SideBar 
           removeMovie={this.removeMovie} 
           watchList={this.state.watchList}
@@ -272,6 +289,10 @@ class App extends Component {
         <div className="movie-note">
         
           <div className="header">
+
+            <Menu
+            toggleMenu={this.toggleMenu}
+            />
             
             <div className="Movie-Search">
               <MovieSearch 

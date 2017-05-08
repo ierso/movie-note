@@ -1,5 +1,32 @@
-.search-field input{
-    border: red solid 3px;
+.search-field{
+    display: flex;
+    border: #383a4e solid 3px;
+    padding: 5px 10px;
 }
-
- 
+.search-field input{
+    color: white;
+    padding-left: 20px;
+    border: solid 0px transparent;
+    height: 100%;
+    box-sizing : border-box;
+    background-color: #212330;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    width: 292px;
+}
+.search-field input::-webkit-input-placeholder {
+  color: white;
+}
+.search-field input:-moz-placeholder { /* Firefox 18- */
+  color: white;  
+}
+.search-field input::-moz-placeholder {  /* Firefox 19+ */
+color: white;  
+}
+.search-field input:-ms-input-placeholder {  
+color: white;  
+}
+.search-field input:focus{
+    outline: none;
+}

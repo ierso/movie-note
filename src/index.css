@@ -25,6 +25,8 @@ body {
   display: flex;
   height: 70px;
   align-items: center;
+  background-color: #212330;
+  justify-content: space-between;
 }
 .main{
   width: 100%;
@@ -72,7 +74,7 @@ h4.info-title{
 
 /*auth*/
 .auth-form{
-  background-color: #2a2c3c;
+  background-color: #212330;
   border: #383a4e solid 3px;
   padding: 20px;
   color: white;
@@ -95,7 +97,7 @@ h4.info-title{
 .auth-form .form-group input{
   padding: 10px 15px;
   border: #383a4e solid 2px;
-  background-color: #2a2c3c;
+  background-color: #212330;
   font-weight: 600;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
@@ -121,4 +123,25 @@ color: white;
 }
 .modal-warning a:hover{
   color: #ff9104;
+}
+.login-user{
+  padding-right: 20px;
+}
+.login-user .button{
+  margin-left: 15px;
+}
+
+
+/*mobile*/
+@media screen and (max-width: 950px){
+  .sidebar{
+    display: none;
+  }
+}
+
+.sidebar.show{
+  display: block;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
 }

@@ -8,7 +8,7 @@ export const SideBar = (props) => {
     return (
         <div className="movie-note">
           <div className="user">
-            <p>welcome {props.username}</p>
+            <p>Welcome {props.username}</p>
           </div>
           <div className="sidebar-title">
             <h2><Link className="sidebar-title" onlyActiveOnIndex activeStyle={{backgroundColor: '#383a4e', color:'#ff9104'}} to="/">Recent Movies</Link></h2>
