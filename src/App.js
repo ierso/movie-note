@@ -26,29 +26,25 @@ import {findId, toggleRemove, removeMovie, updateRemove, modifyText} from './lib
 
 
 
-// import {addMovie} from './lib/watchListHelpers'
-
-
-
 class App extends Component {
   
   constructor(props){
     super(props);
   
     this.state = {
-      test: [],
       keys: [],
       movies: [],
       loggedIn: "not logged in",
       watchList: [],
       searchValue: '',
-      poster: 'http://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg',
+      poster: 'https://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg',
       isModalOpen: false,
       login: false,
       register: false,
       loginModal: false,
       registerModal: false,
       sidebar: 'sidebar',
+      windowWidth: window.innerWidth,
       userName: ''
     }
   }
@@ -66,7 +62,7 @@ class App extends Component {
 
   componentWillMount(){
     // Called the first time the component is loaded right before the component is added to the page
- 
+
     // Listen to auth state changes
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser) {
@@ -104,7 +100,6 @@ class App extends Component {
         
       } else {
         this.loggedOut()
-        console.log('not logged in');
         // this.setLogOutMessage()
 
       }
@@ -145,7 +140,6 @@ class App extends Component {
     this.setState({
       searchValue: ''
     })
-    console.log('hiding menu')
   }
   
 
@@ -172,8 +166,6 @@ class App extends Component {
         sidebar: 'sidebar'
       })
     }
-    
-    console.log('testing')
   }
  
 
@@ -221,9 +213,6 @@ class App extends Component {
      
       let uid = user.uid;
      
-     
-      console.log(newMovie.id)
-      console.log(this.state.watchList)
       // adding data to user
       firebase.database()
       .ref('/users/'+uid+'/watchlist/'+newMovie.id)
@@ -277,12 +266,13 @@ class App extends Component {
 
     return (
       <div className="app">
-
+        
         <div className={this.state.sidebar}> 
           <SideBar 
           removeMovie={this.removeMovie} 
           watchList={this.state.watchList}
           username={this.state.userName}
+          toggleMenu={this.toggleMenu}
           />
         </div>
 
@@ -292,6 +282,7 @@ class App extends Component {
 
             <Menu
             toggleMenu={this.toggleMenu}
+            menuClass='menu'
             />
             
             <div className="Movie-Search">
@@ -322,7 +313,6 @@ class App extends Component {
               { this.state.loginModal ? <Login closeModal={this.closeModal}/> : null }
               { this.state.registerModal ? <Register closeModal={this.closeModal}/> : null }
               
-              {/*<p><button onClick={this.closeModal}>Close</button></p>*/}
             </Modal>
             
           </div> 

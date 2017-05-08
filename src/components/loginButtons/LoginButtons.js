@@ -7,7 +7,6 @@ export default class LoginButtons extends Component {
   
 
   render () {
-    console.log(this.props.loggedIn)
     return (
       <div>
         {!this.props.loggedIn ? (

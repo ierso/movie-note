@@ -10,7 +10,7 @@ export const MoviePoster = (props) => {
             (props.poster === undefined)
             ? <div className="movie-poster-blank"></div>
             : <img className="movie-poster-img" 
-                src={'http://image.tmdb.org/t/p/w500'+
+                src={'https://image.tmdb.org/t/p/w500'+
                 props.poster} 
                 alt={props.posterTitle}/>
             }

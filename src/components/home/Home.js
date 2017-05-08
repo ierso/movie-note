@@ -36,9 +36,9 @@ class Home extends Component {
               <div className="recent-movie" key={movie.id}>
                 <Link to={`/movie/${movie.id}`}>
                   <img className="recent-movie-poster" src={
-                    (`http://image.tmdb.org/t/p/w300${movie.poster_path}` === 'N/A')
-                    ? `http://image.tmdb.org/t/p/w300${movie.poster_path}`
-                    : `http://image.tmdb.org/t/p/w300${movie.poster_path}`
+                    (`https://image.tmdb.org/t/p/w300${movie.poster_path}` === 'N/A')
+                    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                    : `https://image.tmdb.org/t/p/w300${movie.poster_path}`
                     } alt={movie.title}/>
                 </Link>
               </div>

@@ -11,6 +11,7 @@
   padding: 0px 0px 0px 20px;
   height: 70px;
   align-items: center;
+  justify-content: space-between;
 }
 .sidebar-title a{
   display: block;
@@ -51,4 +52,13 @@
 }
 .checkbox{
   margin-right: 10px;
+}
+
+
+@media screen and (min-width: 950px){
+  .sidebar.show{
+    display: block;
+    border: green solid 3px;
+    position: relative
+  }
 }

@@ -1,14 +1,24 @@
 import  React from 'react'
+import {Menu} from '.././menu/Menu'
+
+import Size from '.././size/Size'
+
 import { Link } from 'react-router';
 
-import './css/index.css';
+import './css/index.css'
+import '.././menu/index.css'
 
 export const SideBar = (props) => {
     
     return (
         <div className="movie-note">
+          <h3><Size/></h3>
           <div className="user">
             <p>Welcome {props.username}</p>
+             <Menu
+             toggleMenu={props.toggleMenu} 
+             menuClass='change menu'
+             />
           </div>
           <div className="sidebar-title">
             <h2><Link className="sidebar-title" onlyActiveOnIndex activeStyle={{backgroundColor: '#383a4e', color:'#ff9104'}} to="/">Recent Movies</Link></h2>

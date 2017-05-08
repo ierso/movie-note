@@ -8,7 +8,7 @@ export const ModulePoster = (props) => {
             {    
             (props.moviePoster === null)
             ? <div className="module-poster-img-placeholder"></div>
-            : <img className="module-poster-img" src={`http://image.tmdb.org/t/p/w185${props.moviePoster}`} alt={props.movieTitle}/>
+            : <img className="module-poster-img" src={`https://image.tmdb.org/t/p/w185${props.moviePoster}`} alt={props.movieTitle}/>
             } 
         </div>
     )

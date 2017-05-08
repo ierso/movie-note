@@ -8,7 +8,6 @@ export const MovieSearch = (props) => {
     let search = {
         height: '30px',
         width: '30px',
-        backgroundColor: '#eee',
         backgroundImage: 'url(' + searchIcon + ')',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
