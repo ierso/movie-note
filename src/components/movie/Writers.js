@@ -14,7 +14,7 @@ export const Writers = (props) => {
                             <div className="profile-image">
                             {
                                 (writer.profile_path === null)
-                                ? <div className="blank-profile"></div>
+                                ? <div className="blank-profile" style={props.blankPerson}></div>
                                 : <img className="movie-profile-img" src={
                                 `https://image.tmdb.org/t/p/w66_and_h66_bestv2${writer.profile_path}`
                                 }  alt={writer.name}/>

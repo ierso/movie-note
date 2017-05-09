@@ -15,7 +15,7 @@ export const Actors = (props) => {
                         <div className="actor-image">
                           {
                             (star.profile_path === null)
-                            ? <div className="blank-profile"></div>
+                            ? <div className="blank-profile" style={props.blankPerson}></div>
                             : <img className="movie-profile-img" src={
                             `https://image.tmdb.org/t/p/w66_and_h66_bestv2/${star.profile_path}`
                             }  alt={star.name}/>

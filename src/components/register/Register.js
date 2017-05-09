@@ -22,7 +22,7 @@ export default class Register extends Component {
   }
 
   componentWillMount(){
-    console.log(this.props)
+
   }
 
   render () {

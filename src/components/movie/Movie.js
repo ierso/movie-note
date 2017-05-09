@@ -11,6 +11,8 @@ import {Actors} from './Actors'
 import {Genre} from './Genre'
 import {Runtime} from './Runtime'
 
+import person from '../../person.svg'
+
 import './css/index.css'
 
 // import {loadMovies} from '../../lib/movieService'
@@ -106,9 +108,8 @@ class Movie extends Component {
 
     let newDate = modifyText(`${this.state.movie.release_date}`, '-')
 
-    // console.log(JSON.stringify(this.state.movie))
     let imgUrl = `https://image.tmdb.org/t/p/original${this.state.movie.backdrop_path}`
-    let backdop = {
+    const backdop = {
       backgroundColor: '#eee',
       backgroundImage: 'url(' + imgUrl + ')',
       backgroundSize: 'cover',
@@ -117,8 +118,12 @@ class Movie extends Component {
       filter: 'brightness(120%) grayscale(40%)'
     }
 
-
-    console.log(this.state.movie) 
+    const blankPerson = {
+        backgroundImage: 'url(' + person + ')',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center 11px'
+    }
 
     return (
       <div className="movie">
@@ -183,10 +188,12 @@ class Movie extends Component {
               
               <Directors
               directors={this.state.movie.credits.crew}
+              blankPerson={blankPerson}
               />
 
               <Writers 
               writers={this.state.movie.credits.crew}
+              blankPerson={blankPerson}
               />
 
             </div>
@@ -195,6 +202,7 @@ class Movie extends Component {
 
               <Actors 
               stars={this.state.movie.credits.cast}
+              blankPerson={blankPerson}
               />
 
             </div>

@@ -24,7 +24,6 @@
 .sidebar-title a:hover{
   background-color: #383a4e;
 }
-
 .sidebar-title h2{
   margin: 0px;
 }
@@ -42,23 +41,44 @@
   padding: 0px;
 }
 .movie-note ul li a{
-  padding: 10px 20px;
-  display: block;
   text-decoration: none;
   color: white;
+  flex-grow: 1;
+  padding: 10px;
 }
-.movie-note ul li a:hover{
+.movie-note ul li:hover{
+  cursor: pointer;
   background-color: #252937;
 }
 .checkbox{
   margin-right: 10px;
 }
+.login-user-mobile{
+  display: none;
+}
+
+.watchlist-module{
+  display: flex;
+  align-items: center;
+  border-bottom: #212330 solid 1px;
+}
+
+.watchlist-module .checkbox{
+  flex-basis: 30px;
+  margin-left: 15px;
+}
 
 
-@media screen and (min-width: 950px){
-  .sidebar.show{
+@media screen and (max-width: 950px){
+  .login-user-mobile{
     display: block;
-    border: green solid 3px;
-    position: relative
+  }
+  .login-user-mobile .button{
+    width: 100%;
+    display: block;
+    border-radius: 0px;
+    padding: 10px 20px;
+    text-align: left;
+    border-bottom: #212330 solid 1px;
   }
 }

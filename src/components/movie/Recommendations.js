@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 import './css/Recommendations.css'
 
 export const Recommendations = (props) => {
-  console.log(props.recommendations)
 
     if(props.recommendations){
         return (

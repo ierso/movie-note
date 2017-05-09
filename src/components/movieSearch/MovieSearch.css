@@ -13,7 +13,7 @@
     font-weight: 600;
     font-size: 16px;
     font-family: 'Lato', sans-serif;
-    width: 292px;
+    width: 334px;
 }
 .search-field input::-webkit-input-placeholder {
   color: white;
@@ -29,4 +29,19 @@ color: white;
 }
 .search-field input:focus{
     outline: none;
+}
+
+@media screen and (max-width: 950px){
+   .search-field input{
+        color: white;
+        padding-left: 20px;
+        border: solid 0px transparent;
+        height: 100%;
+        box-sizing : border-box;
+        background-color: #212330;
+        font-weight: 600;
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        width: 100%;
+    } 
 }

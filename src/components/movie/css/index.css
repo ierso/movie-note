@@ -147,6 +147,11 @@
 
 /*sub content*/
 @media screen and (max-width: 1430px){
+  .movie-header-content{
+    padding-bottom: 50px;
+  }
+}
+@media screen and (max-width: 1430px){
   .movie-sub-content{
     width: 100%;
     flex-direction: column;
@@ -175,6 +180,7 @@
   }
 }
 
+
 /*cast and crew*/
 @media screen and (max-width: 1430px){
   .movie-sub-credits{
@@ -192,3 +198,4 @@
     height: 165px
   }
 }
+

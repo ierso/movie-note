@@ -13,8 +13,9 @@ import Login from './components/login/Login'
 import Register from './components/register/Register'
 
 // import {Movie} from './components/movie/Movie'
-import {MovieSearch} from './components/movieSearch/MovieSearch'
-import {SideBar} from './components/sideBar'
+import MovieSearch from './components/movieSearch/MovieSearch'
+import SideBar from './components/sideBar/SideBar'
+
 import {MovieList} from './components/movieList'
 
 import {Menu} from './components/menu/Menu'
@@ -135,25 +136,16 @@ class App extends Component {
     )
   }
 
-
   hideMenu = () => {
     this.setState({
       searchValue: ''
     })
   }
-  
-
-  removeData = (e) => {
-    e.preventDefault();
-    
-  }
 
   handleLogOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut();
-    console.log('logged out');
   }
-
 
   toggleMenu = (e) => {
     e.preventDefault();
@@ -167,7 +159,13 @@ class App extends Component {
       })
     }
   }
- 
+
+  showMenu = (e) => {
+    this.setState({
+      sidebar: 'sidebar'
+    })
+  }
+  
 
   // Modal
 
@@ -217,17 +215,14 @@ class App extends Component {
       firebase.database()
       .ref('/users/'+uid+'/watchlist/'+newMovie.id)
       .set(newMovie)
-      
     }
   }
 
   removeMovie = (id) => {
-    
     let movie = findId(id, this.state.watchList)
     let removed = toggleRemove(movie)
     let index = this.state.watchList.indexOf(movie);
     let updatedWatchList = updateRemove(this.state.watchList, removed)
-
     let movieUID = this.state.watchList[index].id
 
     
@@ -243,19 +238,14 @@ class App extends Component {
     }
 
     firebase.auth().onAuthStateChanged(firebaseUser => {
-     
       if(firebaseUser) {
-       
         // this.setLogInMessage()
         
         firebase.database()
         .ref('/users/'+firebaseUser.uid+'/watchlist/'+movieUID)
         .remove()
-      
       } else {
-        
         // this.setLogOutMessage()
-
       }
     });
     
@@ -267,14 +257,21 @@ class App extends Component {
     return (
       <div className="app">
         
-        <div className={this.state.sidebar}> 
-          <SideBar 
-          removeMovie={this.removeMovie} 
-          watchList={this.state.watchList}
-          username={this.state.userName}
-          toggleMenu={this.toggleMenu}
-          />
-        </div>
+        
+        <SideBar 
+        removeMovie={this.removeMovie} 
+        watchList={this.state.watchList}
+        username={this.state.userName}
+        toggleMenu={this.toggleMenu}
+        sideBar={this.state.sidebar}
+        showMenu={this.showMenu}
+        
+        loggedIn={this.state.login} 
+        openModalLogin={this.openModalLogin}
+        openModalRegister={this.openModalRegister}
+        handleLogOut={this.handleLogOut}
+        />
+        
 
         <div className="movie-note">
         
@@ -299,6 +296,8 @@ class App extends Component {
                   poster={this.state.poster}/>
               </div>
             </div>
+            
+
             <div className="login-user">
               <LoginButtons 
                 loggedIn={this.state.login} 
