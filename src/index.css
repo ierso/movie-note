@@ -152,6 +152,12 @@ color: white;
   }
 }
 
+@media screen and (max-width: 520px){
+  .auth-form{
+    width: 230px;
+  }
+}
+
 .sidebar.show{
   display: block;
   position: absolute;

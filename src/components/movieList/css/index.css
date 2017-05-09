@@ -27,6 +27,14 @@
   background-color: #252937;
   color: white;
 }
-
-
-
+@media screen and (max-width: 520px){
+  .movie-list{
+    position: absolute;
+    max-height: 100%;
+    overflow-y: scroll;
+    width: 100%;
+    left: 0;
+    right: 0px;
+    top: 70px;
+  }
+}
