@@ -14,19 +14,25 @@
   overflow-y: scroll;
   width: 390px;
 }
-.movie-module{
+.movie-module-wrapper{
   background-color: #faf9fa;
-  display: flex;
-  padding: 5px 10px;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  padding: 13px 10px 10px 10px;
   color: #252937;
-  text-decoration: none;
+
 }
-.movie-module:hover{
+.movie-module-wrapper:hover{
   background-color: #252937;
   color: white;
 }
+.movie-module-wrapper:hover .module-title h4{
+  color: white;
+}
+
+a.movie-module{
+  text-decoration: none;
+}
+
 @media screen and (max-width: 520px){
   .movie-list{
     position: absolute;

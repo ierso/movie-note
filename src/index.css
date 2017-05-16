@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
 
 h1,h2,h3,h4,h5,h6,p,li,a{
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 
@@ -40,20 +45,6 @@ hr{
 
 /*movie landing page*/
 
-.movie-attributes{
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-h4.info-title{
-  text-transform: uppercase;
-  color: #7b828b;
-}
-.movie-watchBtn{
-  margin-top: 30px;
-}
-
-
 .button{
   background-color: #cc7b19;
   background-image: none;
@@ -63,7 +54,7 @@ h4.info-title{
   border-radius: 3px;
   cursor: pointer;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
 }
 .button:hover{
   background-color: #ff9104;
@@ -98,8 +89,8 @@ h4.info-title{
   padding: 10px 15px;
   border: #383a4e solid 2px;
   background-color: #212330;
-  font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   box-sizing : border-box;
   width: 100%;

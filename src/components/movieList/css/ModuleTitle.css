@@ -1,8 +1,14 @@
 .module-title{
-  margin-left: 20px;
-  flex: 6;
+  width: 200px;
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+  height: 100px;
 }
 .module-title h4{
   margin: 0px;
   font-size: 13px;
+  font-weight: 400;
+  color: #252937;
 }
+

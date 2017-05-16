@@ -10,9 +10,9 @@
     height: 100%;
     box-sizing : border-box;
     background-color: #212330;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
     width: 334px;
 }
 .search-field input::-webkit-input-placeholder {
@@ -39,9 +39,9 @@ color: white;
         height: 100%;
         box-sizing : border-box;
         background-color: #212330;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 16px;
-        font-family: 'Lato', sans-serif;
+        font-family: 'Roboto', sans-serif;
         width: 100%;
     } 
 }

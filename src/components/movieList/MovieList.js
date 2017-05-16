@@ -30,7 +30,7 @@ export const MovieList = (props) => {
             </div>
                 {props.movies.map((movie) =>{
                     return(
-                        <div key={movie.id}>
+                        <div className="movie-module-wrapper" key={movie.id}>
                             <Link onClick={props.hideMenu} 
                                 to={`/movie/${movie.id}`} 
                                 className="movie-module" 

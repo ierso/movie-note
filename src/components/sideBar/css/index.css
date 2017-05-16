@@ -18,7 +18,7 @@
   padding: 20px;
   color: white;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 300;
   border-bottom: #212330 solid 1px;
 }
 .sidebar-title a:hover{
@@ -29,7 +29,7 @@
 }
 .watchlist-title h2{
   color: white;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   padding: 20px 0px 20px 20px;
   background-color: #383a4e;

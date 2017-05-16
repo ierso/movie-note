@@ -50,7 +50,7 @@
   margin: 0 auto;
 }
 .name-title{
-  font-weight: 600;
+  font-weight: 500;
   color: black;
   margin: 0px;
 }
@@ -68,6 +68,7 @@
 }
 .plot p{
   font-size: 18px;
+  font-weight: 300;
 }
 .profile{
   display: flex;
@@ -112,7 +113,6 @@
 .movie-info{
   width: 100%;
   flex-direction: column;
-  
 }
 .movie-profile-img{
   border-radius: 40px;
@@ -124,6 +124,19 @@
   flex: 1;
   margin-left: 20px;
 }
+.movie-attributes{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+h4.info-title{
+  text-transform: uppercase;
+  color: #7b828b;
+  font-weight: 500;
+}
+.movie-watchBtn{
+  margin-top: 30px;
+}
 
 /*mobile*/
 /*header*/
@@ -132,11 +145,13 @@
   .movie-header-content{
     width: 100%;
     padding: 20px 20px;
+    
   }
 }
 @media screen and (max-width: 1020px){
   .movie-header-content{
     flex-direction: column;
+    display: block;
   }  
 }
 @media screen and (max-width: 1020px){
@@ -153,6 +168,7 @@
 }
 @media screen and (max-width: 1430px){
   .movie-sub-content{
+    display: block;
     width: 100%;
     flex-direction: column;
   }
@@ -191,6 +207,7 @@
 @media screen and (max-width: 996px){
   .movie-sub-credits{
     flex-direction: column;
+    display: block;
   }
 }
 @media screen and (max-width: 996px){
