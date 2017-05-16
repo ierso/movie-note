@@ -1,6 +1,6 @@
 # Movie-Note
 
-This project is generated with `creat-react-app`
+This project is generated with `create-react-app`
 
 ## Build & development
 
