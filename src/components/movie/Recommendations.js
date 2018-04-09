@@ -22,7 +22,7 @@ export const Recommendations = (props) => {
                                 (movie.poster_path === null)
                                 ? <div className="blank-profile"></div>
                                 : <img className="movie-rec-img" src={
-                                `https://image.tmdb.org/t/p/w500_and_h281_bestv2${movie.poster_path}`
+                                `https://image.tmdb.org/t/p/w500_and_h282_face/${movie.poster_path}`
                                 }  alt={movie.title}/>
                               }
                             </div>
